@@ -1,0 +1,6 @@
+<h1>Your Courses</h1>
+<% @courses.each do |course| %>
+<%= link_to course.title, course_path(course) %>
+(Current Grade:<%=course.grade%>%)
+<hr>
+<% end %>

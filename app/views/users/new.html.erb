@@ -1,0 +1,27 @@
+<h1> Create an Account </h1>
+
+<%= @user.errors.full_messages.join(", ") %>
+<%= form_for @user do |f| %>
+  <div>
+    <%= f.label :first_name, "First name: " %>
+    <%= f.text_field :first_name  %>
+  </div>
+  <div>
+    <%= f.label :last_name, "Last name: "  %>
+    <%= f.text_field :last_name  %>
+  </div>
+  <div>
+    <%= f.label :email, "Email: "  %>
+    <%= f.email_field :email  %>
+  </div>
+  <div>
+    <%= f.label :password, "Password: "  %>
+    <%= f.password_field :password  %>
+  </div>
+  <div>
+    <%= f.label :password_confirmation, "Password Confirmation: " %>
+    <%= f.password_field :password_confirmation  %>
+  </div>
+  <br>
+  <%= f.submit %>
+<% end %>

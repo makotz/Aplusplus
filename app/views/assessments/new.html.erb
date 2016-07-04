@@ -1,0 +1,24 @@
+<h1>Add Assessments</h1>
+
+<%= form_for @assessment, url: course_assessments_path(@course) do |a| %>
+  <div>
+    *<%= a.label :title %><br>
+    <%= a.text_field :title %>
+  </div>
+  <div>
+    <%= a.label :description %><br>
+    <%= a.text_field :description %>
+  </div>
+  <div>
+    *<%= a.label :due_date %><br>
+    <%= a.text_field :due_date %>
+  </div>
+  <div>
+    *<%= a.label :weight %><br>
+    <%= a.text_field :weight %>
+  </div>
+  <div>
+    <%= a.submit "Add Assessment" %>
+  </div>
+<% end %>
+<%= link_to "See Course", course_path(@course), :class => "button" %>

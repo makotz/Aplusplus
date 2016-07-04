@@ -1,0 +1,21 @@
+<%= form_for @course do |c| %>
+  <div>
+    *<%= c.label :title %><br>
+    <%= c.text_field :title %>
+  </div>
+  <div>
+    <%= c.label :instructor %><br>
+    <%= c.text_field :instructor %>
+  </div>
+  <div>
+    *<%= c.label :credit %><br>
+    <%= c.text_field :credit %>
+  </div>
+  <div>
+    <%= c.label :desired_grade %><br>
+    <%= c.text_field :desired_grade %>
+  </div>
+  <div>
+    <%= c.submit "Add Assessments" %>
+  </div>
+<% end %>

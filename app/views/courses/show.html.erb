@@ -1,0 +1,28 @@
+<h1><%= @course.title %></h1>
+<h2>You want a <%= @course.desired_grade %>% in the course</h2>
+<h3>Assessments:<%= link_to "Add new assessment", new_course_assessment_path(@course) %></h3>
+<table border="1" style="width:100%">
+  <tr>
+    <td>Assessment</td>
+    <td>Grade (%)</td>
+    <td>Weight</td>
+    <td>Due Date</td>
+    <td>Details</td>
+  </tr>
+<% @assessments.each do |assessment| %>
+  <tr>
+    <td><%= link_to "#{assessment.title}", edit_course_assessment_path(@course, assessment) %></td>
+    <td><% if assessment.grade != nil %>
+      <%= assessment.grade %>
+      <%= assessment.grade %>
+    <% else %>
+      <%= form_for assessment, url:course_assessment_path(@course, assessment) do |a| %>
+        <%= a.text_field :grade %>
+        <%= a.submit "Update" %>
+      <% end %>
+    <% end %></td>
+    <td><%= assessment.weight %></td>
+    <td><%= assessment.due_date %></td>
+    <td><%= assessment.description %></td>
+<% end %>
+</table>
