@@ -13,8 +13,9 @@ helper_method :sort_column, :sort_direction, :current_grade
   def create
     @course = Course.new course_params
     @course.user = @current_user
+    current_grade(@course)
     if @course.save
-      redirect_to(new_course_assessment_path(@course))
+      redirect_to course_path(@course)
     else
       render :new, alert: "Course cannot be created!"
     end
@@ -30,21 +31,37 @@ helper_method :sort_column, :sort_direction, :current_grade
     current_grade(@course)
   end
 
-  private
-
-  def order_by(category)
+  def update
+    @course = Course.find params[:id]
+    if @course.update course_params
+      redirect_to courses_path, notice: "Update successful!"
+    end
   end
+
+  def destroy
+    @course = Course.find params[:id]
+    @course.destroy
+    redirect_to courses_path, notice: "Course deleted"
+  end
+
+  private
 
   def current_grade(course)
     @current_grade = 0
-    course.assessments.each do |assessment|
-      @current_grade += (assessment.grade * (assessment.weight/100))
-    end
+    @total_weight = 0
+    @total_score = 0
+      course.assessments.each do |assessment|
+        if assessment.grade != nil
+          @total_score += (assessment.grade/100)*(assessment.weight)
+          @total_weight += (assessment.weight)
+        end
+      end
+    @current_grade = (@total_score/@total_weight)*100
     course.grade = @current_grade
   end
 
   def course_params
-      params.require(:course).permit(:title, :instructor, :credit, :desired_grade)
+      params.require(:course).permit(:title, :instructor, :credit, :desired_grade, :term)
   end
 
   def sort_column
