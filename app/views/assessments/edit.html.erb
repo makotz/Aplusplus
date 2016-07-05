@@ -1,6 +1,6 @@
-<h1>Add Assessments</h1>
+<h1>Edit Assessment</h1>
 
-<%= form_for @assessment, url: course_assessments_path(@course) do |a| %>
+<%= form_for @assessment, url: course_assessment_path(@course, @assessment) do |a| %>
   <div>
     *<%= a.label :title %><br>
     <%= a.text_field :title %>
@@ -18,7 +18,7 @@
     <%= a.select :weight, options_for_select(1..100)%>
   </div>
   <div>
-    <%= a.submit "Add Assessment" %>
+    <%= a.submit "Update" %>
   </div>
 <% end %>
 <%= link_to "See Course", course_path(@course), :class => "button" %>

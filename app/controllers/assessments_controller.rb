@@ -17,15 +17,24 @@ before_action :authenticate_user!
 
   def edit
     @assessment = Assessment.find params[:id]
+    @course = @assessment.course
   end
 
   def update
     @assessment = Assessment.find params[:id]
     if @assessment.update assessment_params
       redirect_to course_path(params[:course_id]), notice: "Grade updated!"
+    else
+      redirect_to course_path(params[:course_id]), alert: "Unsuccessful"
     end
   end
 
+  def destroy
+    @course = @assessment.course
+    @assessment.destroy
+    redirect_to course_path(@course), notice: "Assessment deleted"
+  end
+  
   private
 
   def assessment_params
