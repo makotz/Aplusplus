@@ -21,6 +21,7 @@ before_action :current_user, only: [:create, :index]
 
   def index
     @courses = @current_user.courses
+    
   end
 
   def show
@@ -34,5 +35,6 @@ before_action :current_user, only: [:create, :index]
   def course_params
       params.require(:course).permit(:title, :instructor, :credit, :desired_grade)
   end
+
 
 end
