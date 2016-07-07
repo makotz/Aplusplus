@@ -1,7 +1,9 @@
 <h1><%= @course.title %></h1>
+
 <%= link_to "Delete", course_path(@course), method: :delete, data: {confirm: "Are you sure?"}%>
 <h2>You want a <%= @course.desired_grade %>% in the course.</h2>
-<h2>And you currently have <%= @current_grade.round(1) %>%.</h2>
+
+<!-- <h2>And you currently have <%#= @current_grade.round(1) %>%.</h2> -->
 <% if @assessments.exists? %>
 <h3>Assessments:<%= link_to "Add new assessment", new_course_assessment_path(@course) %></h3>
 <table border="1" style="width:100%">
@@ -16,17 +18,20 @@
   <tr>
     <td><%= link_to "#{assessment.title}", edit_course_assessment_path(@course, assessment) %></td>
     <td><% if assessment.grade != nil %>
-      <%= assessment.grade %>
+      <%#= assessment.grade %>
+      <div id="assessments" style = "display: inline-block">
+      <%= render "/courses/grade", assessment: assessment %>
+      </div>
       <div class="update-button" style="display: inline-block"> Update
-        <div class="update-form" style="display: inline-block">
-          <%= form_for assessment, url: course_assessment_path(@course, assessment) do |a| %>
+        <div style="display: inline-block">
+          <%= form_for assessment, url: course_assessment_path(@course, assessment), remote: true do |a| %>
           <%= a.text_field :grade %>
           <%= a.submit "Update" %>
           <%end %>
         </div>
       </div>
     <% else %>
-      <%= form_for assessment, url:course_assessment_path(@course, assessment) do |a| %>
+      <%= form_for assessment, url:course_assessment_path(@course, assessment), remote: true do |a| %>
         <%= a.text_field :grade %>
         <%= a.submit "Update" %>
       <% end %>

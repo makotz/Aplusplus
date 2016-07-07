@@ -22,10 +22,15 @@ before_action :authenticate_user!
 
   def update
     @assessment = Assessment.find params[:id]
+    respond_to do |format|
+
     if @assessment.update assessment_params
-      redirect_to course_path(params[:course_id]), notice: "Grade updated!"
+      format.html { redirect_to course_path(params[:course_id]), notice: "Grade updated!" }
+      format.js   { render :update_success }
     else
-      redirect_to course_path(params[:course_id]), alert: "Unsuccessful"
+      format.html { redirect_to course_path(params[:course_id]), alert: "Unsuccessful" }
+      format.js   { render :update_failure }
+    end
     end
   end
 
@@ -34,7 +39,7 @@ before_action :authenticate_user!
     @assessment.destroy
     redirect_to course_path(@course), notice: "Assessment deleted"
   end
-  
+
   private
 
   def assessment_params
