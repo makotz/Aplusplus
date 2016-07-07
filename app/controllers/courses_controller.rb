@@ -15,7 +15,7 @@ helper_method :sort_column, :sort_direction, :current_grade
     @course.user = @current_user
     current_grade(@course) if @course.assessments.exists?
     if @course.save
-      redirect_to course_path(@course)
+      redirect_to course_path(@course), notice: "Course: #{@course.title} has been created!"
     else
       render :new, alert: "Course cannot be created!"
     end
@@ -28,7 +28,7 @@ helper_method :sort_column, :sort_direction, :current_grade
   def show
     @course = Course.find params[:id]
     @assessments = @course.assessments.order(sort_column + " " + sort_direction)
-    current_grade(@course) if @course.assessments.exists?
+    # current_grade(@course) if @course.assessments.exists?
   end
 
   def update

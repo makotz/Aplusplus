@@ -17,29 +17,19 @@
 <% @assessments.each do |assessment| %>
   <tr>
     <td><%= link_to "#{assessment.title}", edit_course_assessment_path(@course, assessment) %></td>
-    <td><% if assessment.grade != nil %>
-      <%#= assessment.grade %>
-      <div id="assessments" style = "display: inline-block">
-      <%= render "/courses/grade", assessment: assessment %>
-      </div>
-      <div class="update-button" style="display: inline-block"> Update
-        <div style="display: inline-block">
-          <%= form_for assessment, url: course_assessment_path(@course, assessment), remote: true do |a| %>
+    <td>
+      <% if assessment.grade != nil %>
+        <%= assessment.grade %>
+        <%= form_for assessment, url: course_assessment_path(@course, assessment) do |a| %>
           <%= a.text_field :grade %>
           <%= a.submit "Update" %>
-          <%end %>
-        </div>
-      </div>
-    <% else %>
-      <%= form_for assessment, url:course_assessment_path(@course, assessment), remote: true do |a| %>
-        <%= a.text_field :grade %>
-        <%= a.submit "Update" %>
+        <%end %>
       <% end %>
-    <% end %></td>
-    <td><%= assessment.weight %></td>
-    <td><%= assessment.due_date %></td>
-    <td><%= assessment.description %></td>
-    <% end %>
+    </td>
+  <td><%= assessment.weight %></td>
+  <td><%= assessment.due_date %></td>
+  <td><%= assessment.description %></td>
+  <% end %>
 <% else %>
   <%= link_to "Add new assessment", new_course_assessment_path(@course) %>
 <% end %>

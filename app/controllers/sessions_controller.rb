@@ -14,8 +14,7 @@ class SessionsController < ApplicationController
     else
       if params[:email] != nil
         redirect_to new_user_path, alert: "Hummm, we couldn't find an account with #{params[:email]}. Consider signing up!"
-      else
-          
+      end
     end
   end
 
