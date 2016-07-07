@@ -20,7 +20,7 @@ class AssessmentsController < ApplicationController
       @assessments = []
       @courses.each do |course|
         course.assessments.each do |assessment|
-          j_assessment = {"course_title" => assessment.course.title, "title" => assessment.title, "start" => assessment.due_date}
+          j_assessment = {"title" => assessment.course.title + " - " + assessment.title, "start" => assessment.due_date}
           @assessments << j_assessment
         end
       end

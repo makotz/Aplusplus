@@ -1,3 +1,21 @@
 <h1>Welcome to A Plus Plus</h1>
 
 <div id="calendar"></div>
+<script>
+$(document).ready(function() {
+    $('#calendar').fullCalendar({
+        // put your options and callbacks here
+        eventClick: function(calEvent, jsEvent, view) {
+          alert('a day has been clicked!');
+        },
+        header: {
+            left: 'today',
+            center: 'prev title next',
+            right: 'month,agendaWeek,agendaDay'
+        },
+        defaultView :'month',
+        height: 600,
+        events: '/events.json'
+    });
+});
+</script>
