@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  #route changes here
   root "courses#home"
 
   get "/events.json" => "assessments#index"
