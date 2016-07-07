@@ -1,23 +1,28 @@
 <h1>Your Courses</h1>
 <table border="1" style="width:100%">
-  <tr>
-    <td><%= sortable "title", "Course"%></td>
-    <td><%= sortable "desired_grade", "What you actually have... (%)"%></td>
-    <td><%= sortable "grade", "Grade you want"%></td>
-    <td><%= sortable "credit", "Credits"%></td>
-  </tr>
-<% @courses.each do |course| %>
-  <tr>
-    <td><%= link_to course.title, course_path(course) %></td>
-    <td><% if course.grade != nil %>
-      <%= course.grade %>
-    <% else %>
-      <%= form_for course, url:course_path(course) do |a| %>
-        <%= a.text_field :grade %>
-        <%= a.submit "Update" %>
-      <% end %>
-    <% end %></td>
-    <td><%= course.desired_grade %></td>
-    <td><%= course.credit %></td>
-<% end %>
+  <% if @courses.exists? %>
+    <tr>
+      <td><%= sortable "title", "Course"%></td>
+      <td><%= sortable "desired_grade", "Grade you want"%></td>
+      <td><%= sortable "grade", "What you actually have... (%)"%></td>
+      <td><%= sortable "credit", "Credits"%></td>
+      <td><%= sortable "term", "Term"%></td>
+    </tr>
+    <% @courses.each do |course| %>
+      <tr>
+        <td><%= link_to course.title, course_path(course) %></td>
+        <td><% if course.desired_grade != nil %>
+            <%= course.desired_grade %>
+          <% else %>
+            <%= form_for course, url:course_path(course) do |a| %>
+            <%= a.text_field :desired_grade %>
+            <%= a.submit "Update" %>
+          <% end %>
+          <% end %></td>
+        <td><%= course.grade %></td>
+        <td><%= course.credit %></td>
+        <td><%= course.term %></td>
+      </tr>
+    <% end %>
+  <% end %>
 </table>

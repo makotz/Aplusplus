@@ -1,6 +1,24 @@
-<h1>Editing Assessment</h1>
+<h1>Edit Assessment</h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @assessment %> |
-<%= link_to 'Back', assessments_path %>
+<%= form_for @assessment, url: course_assessment_path(@course, @assessment) do |a| %>
+  <div>
+    *<%= a.label :title %><br>
+    <%= a.text_field :title %>
+  </div>
+  <div>
+    <%= a.label :description %><br>
+    <%= a.text_field :description %>
+  </div>
+  <div>
+    *<%= a.label :due_date %>:<br>
+    <%= a.date_select :due_date, {:start_year => 2016, :use_short_month => true} %>
+  </div>
+  <div>
+    *<%= a.label :weight %>:
+    <%= a.select :weight, options_for_select(1..100)%>
+  </div>
+  <div>
+    <%= a.submit "Update" %>
+  </div>
+<% end %>
+<%= link_to "See Course", course_path(@course), :class => "button" %>

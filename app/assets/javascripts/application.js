@@ -16,3 +16,12 @@
 //= require moment
 //= require fullcalendar
 //= require_tree .
+$(document).ready(function(){
+
+  $('.update-form').hide()
+
+  $('.update-button').click(function() {
+    $(this).children().toggle(300);
+  });
+
+});

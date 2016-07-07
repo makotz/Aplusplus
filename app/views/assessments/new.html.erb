@@ -10,12 +10,12 @@
     <%= a.text_field :description %>
   </div>
   <div>
-    *<%= a.label :due_date %><br>
-    <%= a.text_field :due_date %>
+    *<%= a.label :due_date %>:<br>
+    <%= a.date_select :due_date, {:start_year => 2016, :use_short_month => true} %>
   </div>
   <div>
-    *<%= a.label :weight %><br>
-    <%= a.text_field :weight %>
+    *<%= a.label :weight %>:
+    <%= a.select :weight, options_for_select(1..100)%>
   </div>
   <div>
     <%= a.submit "Add Assessment" %>
