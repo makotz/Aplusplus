@@ -6,6 +6,4 @@ class Course < ActiveRecord::Base
   validates :title, presence: true, uniqueness: true
   validates :credit, presence: true, numericality: { only_integer: true }
 
-  
-
 end
