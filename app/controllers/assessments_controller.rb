@@ -1,5 +1,6 @@
 class AssessmentsController < ApplicationController
   before_action :authenticate_user!
+  COLOUR = ["pink","lightblue","lightgreen","grey","orange"]
 
   def new
     @course = Course.find params[:course_id]
@@ -11,6 +12,7 @@ class AssessmentsController < ApplicationController
     @assessment = Assessment.new assessment_params
     @assessment.course_id = params[:course_id]
     if @assessment.save
+      NotiMailer.notify_user(@assessment).deliver_now
       redirect_to course_path(params[:course_id]), notice: "Assessment added!"
     end
   end
@@ -18,13 +20,16 @@ class AssessmentsController < ApplicationController
   def index
     @courses = current_user.courses.all
     @assessments = []
+    col = 0
     @courses.each do |course|
       course.assessments.each do |assessment|
         j_assessment = {"title" => assessment.course.title + " - " + assessment.title,
           "start" => assessment.due_date,
-          "url" => course_path(course)}
+          "url" => course_path(course),
+          "color" => COLOUR[col]}
         @assessments << j_assessment
       end
+      col += 1
     end
     @assessments.flatten!
     render json: @assessments
@@ -53,9 +58,10 @@ class AssessmentsController < ApplicationController
   end
 
   def destroy
-    @course = @assessment.course
-    @assessment.destroy
-    redirect_to course_path(@course), notice: "Assessment deleted"
+    course = Course.find params[:course_id]
+    assessment = Assessment.find params[:id]
+    assessment.destroy
+    redirect_to course_path(course), notice: "Assessment deleted"
   end
 
   private
