@@ -15,9 +15,12 @@
  *= require_tree .
  *= require bootstrap_and_overrides
  *= require_self
+ *= require fullcalendar
 
 */
-
- // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+#calendar {
+  width: 70%;
+}

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-
+  #route changes here
   root "courses#home"
 
+  get "/events.json" => "assessments#index"
   get "/users/edit_password" => "users#edit_password", as: :edit_password
   patch "users"             => "users#update_password", as: :update_password
   resources :users, only: [:new, :create] do
@@ -13,9 +14,12 @@ Rails.application.routes.draw do
     delete :destroy, on: :collection
   end
 
+  resources :dashboard do
+    get :get_events, on: :collection
+  end
+
   resources :courses do
-    resources :assessments do
-    end
+    resources :assessments, except: [:index]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

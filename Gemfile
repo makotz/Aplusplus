@@ -31,7 +31,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 gem 'kaminari'
 gem 'cancancan'
-gem "pry"
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
+gem 'fullcalendar-wrapper-rails'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

@@ -14,7 +14,9 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
-F//= require_tree .
+//= require moment
+//= require fullcalendar
+//= require_tree .
 $(document).ready(function(){
 
   $('.update-form').hide()
