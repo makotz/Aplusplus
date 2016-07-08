@@ -56,7 +56,7 @@ helper_method :sort_column, :sort_direction, :current_grade
           @total_weight += (assessment.weight)
         end
       end
-    @current_grade = (@total_score/@total_weight)*100
+    @current_grade = (@total_score/@total_weight)*100 if @total_weight != 0
     course.grade = @current_grade
   end
 
@@ -71,5 +71,5 @@ helper_method :sort_column, :sort_direction, :current_grade
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
-  
+
 end
