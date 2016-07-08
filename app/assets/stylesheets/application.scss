@@ -10,11 +10,16 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+
  *= require font-awesome
+ *= require_tree .
+ *= require bootstrap_and_overrides
  *= require_self
  *= require fullcalendar
- *= require_tree .
- */
+
+*/
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
 #calendar {
   width: 70%;
