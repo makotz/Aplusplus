@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root "courses#home"
 
   get "/events.json" => "assessments#index"
+  get "/calendar" => "assessments#calendar"
   get "/users/edit_password" => "users#edit_password", as: :edit_password
   patch "users"             => "users#update_password", as: :update_password
   resources :users, only: [:new, :create] do
@@ -12,10 +13,6 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new, :create] do
     delete :destroy, on: :collection
-  end
-
-  resources :dashboard do
-    get :get_events, on: :collection
   end
 
   resources :courses do

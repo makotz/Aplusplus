@@ -20,12 +20,17 @@ class AssessmentsController < ApplicationController
     @assessments = []
     @courses.each do |course|
       course.assessments.each do |assessment|
-        j_assessment = {"title" => assessment.course.title + " - " + assessment.title, "start" => assessment.due_date}
+        j_assessment = {"title" => assessment.course.title + " - " + assessment.title,
+          "start" => assessment.due_date,
+          "url" => course_path(course)}
         @assessments << j_assessment
       end
     end
     @assessments.flatten!
     render json: @assessments
+  end
+
+  def calendar
   end
 
   def edit
@@ -40,6 +45,7 @@ class AssessmentsController < ApplicationController
     else
       redirect_to course_path(params[:course_id]), alert: "Unsuccessful"
     end
+  end
 
   def destroy
     @course = @assessment.course
@@ -48,7 +54,7 @@ class AssessmentsController < ApplicationController
   end
 
   private
-  
+
     def assessment_params
       params.require(:assessment).permit(:title, :description, :due_date, :weight, :grade)
     end
