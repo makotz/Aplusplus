@@ -1,13 +1,16 @@
-<h1>Your Courses</h1>
-<table border="1" style="width:100%">
-  <% if @courses.exists? %>
-    <tr>
-      <td><%= sortable "title", "Course"%></td>
-      <td><%= sortable "desired_grade", "Grade you want"%></td>
-      <td><%= sortable "grade", "What you actually have... (%)"%></td>
-      <td><%= sortable "credit", "Credits"%></td>
-      <td><%= sortable "term", "Term"%></td>
+<h1 style="margin-bottom: 10px display: inline">Your Courses</h1>
+<h3><%= link_to "Add new course", new_course_path %></h3>
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr class="danger">
+      <th><%= sortable "title", "Course"%></th>
+      <th><%= sortable "desired_grade", "Desired Grade (%)"%></th>
+      <th><%= sortable "grade", "Grade (%)"%></th>
+      <th><%= sortable "credit", "Credits"%></th>
+      <th><%= sortable "term", "Term"%></th>
     </tr>
+  </thead>
+  <tbody>
     <% @courses.each do |course| %>
       <tr>
         <td><%= link_to course.title, course_path(course) %></td>
@@ -24,5 +27,4 @@
         <td><%= course.term %></td>
       </tr>
     <% end %>
-  <% end %>
 </table>

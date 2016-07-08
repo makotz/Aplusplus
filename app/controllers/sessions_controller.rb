@@ -7,12 +7,18 @@ class SessionsController < ApplicationController
     user = User.find_by_email params[:email]
     if user && user.authenticate(params[:password])
       sign_in(user)
+<<<<<<< HEAD
       redirect_to calendar_path, notice: "Signed In! Welcome back, #{user.first_name}."
+=======
+      redirect_to root_path, notice: "Signed in! Welcome back, #{user.first_name}."
+>>>>>>> d9158b386134e52e7c613c5ee738791f3ffb17a1
     elsif user
       flash[:alert] = "Wrong password!"
       render :new
     else
-      redirect_to new_user_path, alert: "Hummm, we couldn't find an account with #{params[:email]}. Consider signing up!"
+      if params[:email] != nil
+        redirect_to new_user_path, alert: "Hummm, we couldn't find an account with #{params[:email]}. Consider signing up!"
+      end
     end
   end
 

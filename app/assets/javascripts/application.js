@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
 //= require moment
@@ -20,8 +21,8 @@ $(document).ready(function(){
 
   $('.update-form').hide()
 
-  $('.update-button').click(function() {
-    $(this).children().toggle(300);
-  });
+  // $('.update-button').click(function() {
+  //   $(this).children().toggle(300);
+  // });
 
 });

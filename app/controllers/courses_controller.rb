@@ -13,9 +13,9 @@ helper_method :sort_column, :sort_direction, :current_grade
   def create
     @course = Course.new course_params
     @course.user = @current_user
-    current_grade(@course)
+    current_grade(@course) if @course.assessments.exists?
     if @course.save
-      redirect_to course_path(@course)
+      redirect_to course_path(@course), notice: "Course: #{@course.title} has been created!"
     else
       render :new, alert: "Course cannot be created!"
     end
@@ -28,7 +28,7 @@ helper_method :sort_column, :sort_direction, :current_grade
   def show
     @course = Course.find params[:id]
     @assessments = @course.assessments.order(sort_column + " " + sort_direction)
-    current_grade(@course)
+    # current_grade(@course) if @course.assessments.exists?
   end
 
   def update
@@ -51,7 +51,7 @@ helper_method :sort_column, :sort_direction, :current_grade
     @total_weight = 0
     @total_score = 0
       course.assessments.each do |assessment|
-        if assessment.grade != nil
+        if assessment.grade != nil && assessment.weight != nil
           @total_score += (assessment.grade/100)*(assessment.weight)
           @total_weight += (assessment.weight)
         end
