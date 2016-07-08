@@ -1,16 +1,4 @@
-<<<<<<< HEAD
-  <%= link_to "Home", root_path %> |
-  <% if user_signed_in? %>
-    <%= link_to "Calendar", calendar_path	%> |
-    <%= link_to "My Courses", courses_path	%> |
-    <%= link_to "Add New Course", new_course_path %> |
-      Hello, <%= link_to current_user.first_name, edit_users_path %> |
-    <%= link_to " Sign Out", sessions_path, method: :delete %>
-  <% else %>
-    <%= link_to "Sign Up", new_user_path %> |
-    <%= link_to "Sign In", new_session_path %>
-  <% end %>
-=======
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -28,12 +16,14 @@
         <% if user_signed_in? %>
           <li><%= link_to "My courses", courses_path %></li>
           <li><%= link_to "Add a new course", new_course_path %></li>
+          <li><%= link_to "Calendar", calendar_path %></li>
           <li style="padding: 10px 15px 10px 15px"><div style="display: inline-block">Hello, <%= link_to current_user.first_name, edit_users_path %></div></li>
           <li><%= link_to " Sign Out", sessions_path, method: :delete %></li>
         <% else %>
           <li><%= link_to "Sign up", new_user_path %></li>
           <li><%= link_to "Sign in", new_session_path %></li>
         <% end %>
+        
         <!-- <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -55,4 +45,3 @@
     </div>
   </div>
 </nav>
->>>>>>> d9158b386134e52e7c613c5ee738791f3ffb17a1
