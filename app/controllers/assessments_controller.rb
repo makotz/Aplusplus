@@ -64,6 +64,17 @@ class AssessmentsController < ApplicationController
     redirect_to course_path(course), notice: "Assessment deleted"
   end
 
+  def important
+    @assessment = Assessment.find params[:id]
+    course = Course.find params[:course_id]
+    if @assessment.important?
+      @assessment.update(important: false)
+    else
+      @assessment.update(important: true)
+    end
+    redirect_to course_path(course)
+  end
+
   private
 
     def assessment_params

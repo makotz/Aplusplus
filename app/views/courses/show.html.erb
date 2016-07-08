@@ -17,7 +17,7 @@
   </tr>
 <% @assessments.each do |assessment| %>
   <tr>
-    <td><%= link_to "#{assessment.title}", edit_course_assessment_path(@course, assessment) %></td>
+    <td><%= link_to "#{assessment.title}", edit_course_assessment_path(@course, assessment) %><%= button_to "#{assessment.important}", important_path(@course, assessment), method: :patch %></td>
     <td>
       <% if assessment.grade != nil %>
         <%= assessment.grade %>
