@@ -1,25 +1,9 @@
-<%= form_for @course do |c| %>
-  <div>
-    *<%= c.label :title %><br>
-    <%= c.text_field :title %>
-  </div>
-  <div>
-    *<%= c.label :term %>
-    <%= c.select :term, ['Fall 2016', 'Spring 2017']%>
-  </div>
-  <div>
-    <%= c.label :instructor %>:<br>
-    <%= c.text_field :instructor %>
-  </div>
-  <div>
-    *<%= c.label :credit %>:
-    <%= c.select :credit, options_for_select(1..10)%>
-  </div>
-  <div>
-    *<%= c.label :desired_grade %>:
-    <%= c.select :desired_grade, options_for_select(100.downto(1))%>%
-  </div>
-  <div>
-    <%= c.submit "Add Assessments" %>
-  </div>
-<% end %>
+<%= simple_form_for @course do |f| %>
+    <%= f.input :title %>
+    <%#= f.select :term, ['Fall 2016', 'Spring 2017']%>
+    <%= f.input :instructor %>
+    <%#= f.input :credit, as: :select #options_for_select(1..10)%>
+    <%= f.button :button do %>
+      Create Course
+    <% end %>
+  <% end %>

@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   #route changes here
   root "courses#home"
 
+  get "/auth/facebook", as: :sign_in_with_facebook
+  get "/auth/facebook/callback" => "callbacks#facebook"
+
+
   get "/events.json" => "assessments#index"
   get "/calendar" => "assessments#calendar"
   get "/users/edit_password" => "users#edit_password", as: :edit_password
