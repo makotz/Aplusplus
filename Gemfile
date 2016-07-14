@@ -9,6 +9,8 @@ gem 'sass-rails', '>= 3.2'
 gem 'quiet_assets'
 
 gem 'font-awesome-rails'
+gem 'font-awesome-sass'
+
 gem 'faker'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'

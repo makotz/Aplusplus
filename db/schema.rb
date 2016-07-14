@@ -23,8 +23,9 @@ ActiveRecord::Schema.define(version: 20160714020734) do
     t.float    "weight"
     t.float    "grade"
     t.integer  "course_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "important",   default: false
   end
 
   add_index "assessments", ["course_id"], name: "index_assessments_on_course_id", using: :btree

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "/calendar" => "assessments#calendar"
   get "/users/edit_password" => "users#edit_password", as: :edit_password
   patch "users"             => "users#update_password", as: :update_password
+  patch '/courses/:course_id/assessments/:id' => 'assessments#important', as: :important
   resources :users, only: [:new, :create] do
     get :edit, on: :collection
     patch :update, on: :collection
