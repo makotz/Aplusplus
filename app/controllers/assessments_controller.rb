@@ -48,6 +48,7 @@ class AssessmentsController < ApplicationController
     respond_to do |format|
 
     if @assessment.update assessment_params
+      @assessment_form = "#edit_assessment_#{@assessment.id}"
       format.html { redirect_to course_path(params[:course_id]), notice: "Grade updated!" }
       format.js   { render :update_success }
     else
@@ -62,6 +63,17 @@ class AssessmentsController < ApplicationController
     assessment = Assessment.find params[:id]
     assessment.destroy
     redirect_to course_path(course), notice: "Assessment deleted"
+  end
+
+  def important
+    @assessment = Assessment.find params[:id]
+    course = Course.find params[:course_id]
+    if @assessment.important?
+      @assessment.update(important: false)
+    else
+      @assessment.update(important: true)
+    end
+    redirect_to course_path(course)
   end
 
   private
