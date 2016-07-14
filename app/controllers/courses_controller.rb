@@ -27,7 +27,8 @@ helper_method :sort_column, :sort_direction, :current_grade
 
   def show
     @course = Course.find params[:id]
-    @assessments = @course.assessments.order(sort_column + " " + sort_direction)
+    @imp_assessments = @course.assessments.where(important: true).order(sort_column + " " + sort_direction)
+    @assessments = @course.assessments.where(important: false).order(sort_column + " " + sort_direction)
     # current_grade(@course) if @course.assessments.exists?
   end
 

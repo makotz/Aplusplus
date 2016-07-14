@@ -1,1 +1,4 @@
-$("#assessments").html("<%= j(render('/courses/grade', {assessment: @assessment})) %>");
+$("<%= @assessment_form").prepend("<%= j render('/courses/grade', {assessment: @assessment}) %>");
+
+
+$('#edit_assessment_12').html('14')
