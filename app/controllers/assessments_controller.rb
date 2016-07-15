@@ -1,5 +1,6 @@
 class AssessmentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :assessment_type, only: [:new, :edit]
   COLOUR = ["pink","lightblue","lightgreen","grey","orange"]
 
   def new
@@ -82,7 +83,11 @@ class AssessmentsController < ApplicationController
   private
 
     def assessment_params
-      params.require(:assessment).permit(:title, :description, :due_date, :weight, :grade)
+      params.require(:assessment).permit(:title, :description, :due_date, :weight, :grade, :assessment_type)
+    end
+
+    def assessment_type
+      @assessment_type = ['test', 'quiz', 'exam', 'homework', 'essay']
     end
 
 end

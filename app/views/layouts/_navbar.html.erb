@@ -17,6 +17,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My Courses <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
+              <li><%= link_to "All Courses", courses_path %></li>
               <% Course.all.each do |course| %>
               <li><%= link_to course.title, course_path(course) %></li>
               <% end %>

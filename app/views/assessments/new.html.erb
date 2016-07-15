@@ -1,10 +1,11 @@
 <h1>Add Assessments</h1>
+<%= link_to "See Course", course_path(@course), :class => "button" %>
 
 <%= simple_form_for @assessment, url: course_assessments_path(@course) do |f|%>
   <%= f.input :title %>
+  <%= f.input :assessment_type, collection: @assessment_type %>
   <%= f.input :description %>
   <%= f.input :due_date %>
-  <%= f.input :weight %>
+  <%= f.input :weight, collection: 1..100 %>
   <%= f.button :submit, class: "btn-primary" %>
 <% end %>
-<%= link_to "See Course", course_path(@course), :class => "button" %>
