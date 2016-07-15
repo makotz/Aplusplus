@@ -12,6 +12,7 @@
         <td><%= sortable "title", "Assessment"%></td>
         <td><%= sortable "grade", "Grade (%)"%></td>
         <td><%= sortable "weight", "Weight (%)"%></td>
+        <td><%= sortable "assessment_type", "Type"%></td>
         <td><%= sortable "due_date", "Due Date"%></td>
         <td>Details</td>
         <td></td>
@@ -32,6 +33,7 @@
               <% end %>
             </td>
           <td><%= assessment.weight %></td>
+          <td><%= assessment.assessment_type %></td>
           <td><%= assessment.due_date %></td>
           <td><%= assessment.description %></td>
           <td><%= link_to "DELETE", course_assessment_path(@course, assessment), method: :delete, data: {confirm: "Are you sure?"}%></td>

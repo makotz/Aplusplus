@@ -1,18 +1,46 @@
-
-<h1>Welcome to A Plus Plus</h1>
-
 <div style="text-align: center">
   <h1>Welcome to A Plus Plus</h1>
 </div>
-<blockquote>
+
+<% if user_signed_in? %>
+  <div style="display:inline-block"><%= render "assessments/calendar" %></div>
+
+  <h2>Priorities</h2>
+  <% if @assessments.exists? %>
+    <table border="1" style="width:100%">
+      <thead>
+        <tr>
+          <td><%= sortable "title", "Assessment"%></td>
+          <td><%= sortable "due_date", "Due Date"%></td>
+          <td><%= sortable "weight", "Weight (%)"%></td>
+        </tr>
+      </thead>
+        <% @assessments.each do |assessment| %>
+        <tbody>
+          <tr>
+            <td><%= link_to "#{assessment.title}", edit_course_assessment_path(assessment.course, assessment) %>
+              <%= link_to fa_icon("star"), important_path(assessment.course, assessment), method: :patch, class: "important-icon" %>
+              <%= link_to "DELETE", course_assessment_path(assessment.course, assessment), method: :delete, data: {confirm: "Are you sure?"}%>
+            </td>
+            <td><%= assessment.due_date %></td>
+          <td><%= assessment.weight %></td>
+        </tbody>
+        <% end %>
+  <% end %>
+<% end %>
+
+
+
+
+<!-- <blockquote>
   <p>Absolute game-changer!</p>
   <small>Alaina Gully <cite title="Source Title">Quincy College, Illinois</cite></small>
 </blockquote>
 <blockquote class="blockquote-reverse">
   <p>Hands down the best app grade managing app out there. I can't wait to use... wait, I f@#kin hate school. Just kiddin, no tanks.</p>
-  <small>Makoto <cite title="Source Title">Charismatic Individual</cite></small>
+  <small>Makoto <cite title="Source Title">Free Soul</cite></small>
 </blockquote>
 <blockquote>
   <p>This shit is nice, I mean calendars and colour?! Definitely a 7/10! One day someone will be using this, bet it.</p>
-  <small>Ryan Woo <cite title="Source Title">The Bay Area</cite></small>
-</blockquote>
+  <small>Ryan Woo <cite title="Source Title">Senior Web Developer</cite></small>
+</blockquote> -->

@@ -4,10 +4,12 @@ before_action :current_user, only: [:create, :index]
 helper_method :sort_column, :sort_direction, :current_grade
 
   def home
+    priorities
   end
 
   def new
     @course = Course.new
+    terms
   end
 
   def create
@@ -71,6 +73,14 @@ helper_method :sort_column, :sort_direction, :current_grade
 
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
+  def terms
+    @terms = ['Fall 2016', 'Spring 2017']
+  end
+
+  def priorities
+    @assessments = Assessment.order(:due_date).order(weight: :desc)
   end
 
 end
