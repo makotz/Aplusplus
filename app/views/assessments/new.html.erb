@@ -1,24 +1,11 @@
 <h1>Add Assessments</h1>
-
-<%= form_for @assessment, url: course_assessments_path(@course) do |a| %>
-  <div>
-    *<%= a.label :title %><br>
-    <%= a.text_field :title %>
-  </div>
-  <div>
-    <%= a.label :description %><br>
-    <%= a.text_field :description %>
-  </div>
-  <div>
-    *<%= a.label :due_date %>:<br>
-    <%= a.date_select :due_date, {:start_year => 2016, :use_short_month => true} %>
-  </div>
-  <div>
-    *<%= a.label :weight %>:
-    <%= a.select :weight, options_for_select(1..100)%>
-  </div>
-  <div>
-    <%= a.submit "Add Assessment" %>
-  </div>
-<% end %>
 <%= link_to "See Course", course_path(@course), :class => "button" %>
+
+<%= simple_form_for @assessment, url: course_assessments_path(@course) do |f|%>
+  <%= f.input :title %>
+  <%= f.input :assessment_type, collection: @assessment_type %>
+  <%= f.input :description %>
+  <%= f.input :due_date %>
+  <%= f.input :weight, collection: 1..100 %>
+  <%= f.button :submit, class: "btn-primary" %>
+<% end %>

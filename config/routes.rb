@@ -2,10 +2,15 @@ Rails.application.routes.draw do
   #route changes here
   root "courses#home"
 
+  get "/auth/facebook", as: :sign_in_with_facebook
+  get "/auth/facebook/callback" => "callbacks#facebook"
+
+
   get "/events.json" => "assessments#index"
   get "/calendar" => "assessments#calendar"
   get "/users/edit_password" => "users#edit_password", as: :edit_password
   patch "users"             => "users#update_password", as: :update_password
+  patch '/courses/:course_id/assessments/:id' => 'assessments#important', as: :important
   resources :users, only: [:new, :create] do
     get :edit, on: :collection
     patch :update, on: :collection

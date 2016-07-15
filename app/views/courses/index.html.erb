@@ -14,14 +14,13 @@
     <% @courses.each do |course| %>
       <tr>
         <td><%= link_to course.title, course_path(course) %></td>
-        <td><% if course.desired_grade != nil %>
-            <%= course.desired_grade %>
-          <% else %>
-            <%= form_for course, url:course_path(course) do |a| %>
+        <td>
+          <%= course.desired_grade if course.desired_grade != nil  %>
+          <%= form_for course, url:course_path(course) do |a| %>
             <%= a.text_field :desired_grade %>
             <%= a.submit "Update" %>
           <% end %>
-          <% end %></td>
+        </td>
         <td><%= course.grade %></td>
         <td><%= course.credit %></td>
         <td><%= course.term %></td>
