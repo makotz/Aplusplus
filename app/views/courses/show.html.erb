@@ -4,7 +4,7 @@
 <h2>You want a <%= @course.desired_grade %>% in the course.</h2>
 
 <!-- <h2>And you currently have <%#= @current_grade.round(1) %>%.</h2> -->
-<% if @assessments.exists? %>
+<% if @assessments.present? || @imp_assessments.present? %>
   <h3>Assessments:<%= link_to "Add new assessment", new_course_assessment_path(@course) %></h3>
   <table border="1" style="width:100%">
     <thead>
