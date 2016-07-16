@@ -22,14 +22,14 @@
               <% if assessment.important %>
                 <%= link_to course_path(assessment.course) do %>
                   <span>
-                    <%= assessment.title %>
+                    <%= assessment.course.title + " - " + assessment.title %>
                     <%= fa_icon('star', class: 'important-icon') %>
                   </span>
                 <% end %>
               <% else %>
                 <%= link_to course_path(assessment.course) do %>
                   <span>
-                    <%= assessment.title %>
+                    <%= assessment.course.title + " - " + assessment.title %>
                     <%= fa_icon('star-o', class: 'important-icon') %>
                   </span>
                 <% end %>
