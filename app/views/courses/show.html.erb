@@ -1,9 +1,9 @@
 <h1><%= @course.title %></h1>
-
 <%= link_to "Delete", course_path(@course), method: :delete, data: {confirm: "Are you sure?"}%>
-<h2>You want a <%= @course.desired_grade %>% in the course.</h2>
+<
+h2>You want a <%= @course.desired_grade %>% in the course.</h2>
 
-<!-- <h2>And you currently have <%#= @current_grade.round(1) %>%.</h2> -->
+<h2>And you currently have <%= @course.grade %>%.</h2>
 <% if @assessments.exists? %>
   <h3>Assessments:<%= link_to "Add new assessment", new_course_assessment_path(@course) %></h3>
   <table border="1" style="width:100%">
@@ -27,9 +27,9 @@
             </td>
             <td>
               <%= assessment.grade if assessment.grade != nil %>
-              <%= form_for assessment, url: course_assessment_path(@course, assessment) do |a| %>
-                <%= a.text_field :grade %>
-                <%= a.submit "Update" %>
+              <%= form_for assessment, url: course_assessment_path(@course, assessment) do |f| %>
+                <%= f.text_field :grade %>
+                <%= f.submit "Update" %>
               <% end %>
             </td>
           <td><%= assessment.weight %></td>

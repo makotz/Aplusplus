@@ -50,17 +50,15 @@ helper_method :sort_column, :sort_direction, :current_grade
   private
 
   def current_grade(course)
-    @current_grade = 0
-    @total_weight = 0
-    @total_score = 0
-      course.assessments.each do |assessment|
-        if assessment.grade != nil && assessment.weight != nil
-          @total_score += (assessment.grade/100)*(assessment.weight)
-          @total_weight += (assessment.weight)
-        end
+    current_grade = total_weight = total_score = 0
+    course.assessments.each do |assessment|
+      if assessment.grade != nil && assessment.weight != nil
+        total_score += (assessment.grade)*(assessment.weight)
+        total_weight += (assessment.weight)
       end
-    @current_grade = (@total_score/@total_weight)*100 if @total_weight != 0
-    course.grade = @current_grade
+    end
+    current_grade = (total_score/total_weight)*100 if total_weight != 0
+    course.grade = current_grade
   end
 
   def course_params
