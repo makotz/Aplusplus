@@ -1,8 +1,9 @@
 // Place all the styles related to the assessments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-a.important-icon > i {
+.important-icon {
   font-size: 15px;
-  color: yellow;
-
+  color: #FFE400;
+  -webkit-text-stroke: 0.5px;
+  -webkit-text-stroke-color: #FFE400;
 }

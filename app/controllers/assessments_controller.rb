@@ -49,10 +49,15 @@ class AssessmentsController < ApplicationController
 
   def update
     @assessment = Assessment.find params[:id]
-    if @assessment.update assessment_params
-      redirect_to course_path(params[:course_id]), notice: "Grade updated!"
-    else
-      redirect_to course_path(params[:course_id]), alert: "Unsuccessful"
+    respond_to do |format|
+      if @assessment.update assessment_params
+        @assessment_form = "#edit_assessment_#{@assessment.id}"
+        format.html { redirect_to course_path(params[:course_id]), notice: "Grade updated!" }
+        format.js   { render :update_success }
+      else
+        format.html { redirect_to course_path(params[:course_id]), alert: "Unsuccessful" }
+        format.js   { render :update_failure }
+      end
     end
   end
 

@@ -4,7 +4,7 @@ before_action :current_user, only: [:create, :index]
 helper_method :sort_column, :sort_direction, :current_grade
 
   def home
-    priorities
+    @assessments = Assessment.where(:due_date => Time.now..Time.now+7.days).order(:due_date).order(weight: :desc)
   end
 
   def new
@@ -75,10 +75,6 @@ helper_method :sort_column, :sort_direction, :current_grade
 
   def terms
     @terms = ['Fall 2016', 'Spring 2017']
-  end
-
-  def priorities
-    @assessments = Assessment.order(:due_date).order(weight: :desc)
   end
 
 end

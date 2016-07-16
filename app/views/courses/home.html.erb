@@ -18,14 +18,29 @@
         <% @assessments.each do |assessment| %>
         <tbody>
           <tr>
-            <td><%= link_to "#{assessment.title}", edit_course_assessment_path(assessment.course, assessment) %>
-              <%= link_to fa_icon("star"), important_path(assessment.course, assessment), method: :patch, class: "important-icon" %>
-              <%= link_to "DELETE", course_assessment_path(assessment.course, assessment), method: :delete, data: {confirm: "Are you sure?"}%>
+            <td>
+              <% if assessment.important %>
+                <%= link_to course_path(assessment.course) do %>
+                  <span>
+                    <%= assessment.title %>
+                    <%= fa_icon('star', class: 'important-icon') %>
+                  </span>
+                <% end %>
+              <% else %>
+                <%= link_to course_path(assessment.course) do %>
+                  <span>
+                    <%= assessment.title %>
+                    <%= fa_icon('star-o', class: 'important-icon') %>
+                  </span>
+                <% end %>
+              <% end %>
             </td>
             <td><%= assessment.due_date %></td>
           <td><%= assessment.weight %></td>
         </tbody>
         <% end %>
+  <% else %>
+    <p> </p>
   <% end %>
 <% end %>
 
