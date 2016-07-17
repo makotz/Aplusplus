@@ -16,10 +16,13 @@
         <td><%= link_to course.title, course_path(course) %></td>
         <td>
           <%= course.desired_grade if course.desired_grade != nil  %>
+          <div class="update-desired-grade btn btn-primary">Update Desired Grade</div>
+          <div class="desired-grade-form">
           <%= form_for course, url:course_path(course) do |a| %>
             <%= a.text_field :desired_grade %>
             <%= a.submit "Update" %>
           <% end %>
+          </div>
         </td>
         <td><%= course.grade %></td>
         <td><%= course.credit %></td>

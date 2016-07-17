@@ -4,7 +4,7 @@ before_action :current_user, only: [:create, :index]
 helper_method :sort_column, :sort_direction, :current_grade
 
   def home
-    @assessments = Assessment.where(:due_date => Time.now..Time.now+7.days).order(:due_date).order(weight: :desc)
+    @assessments = Assessment.where(:due_date => Time.now-1.days..Time.now+7.days).order(:due_date).order(weight: :desc)
   end
 
   def new
@@ -31,7 +31,8 @@ helper_method :sort_column, :sort_direction, :current_grade
     @course = Course.find params[:id]
     @imp_assessments = @course.assessments.where(important: true).order(sort_column + " " + sort_direction)
     @assessments = @course.assessments.where(important: false).order(sort_column + " " + sort_direction)
-    # current_grade(@course) if @course.assessments.exists?
+    current_grade(@course) if @course.assessments.exists?
+    @course.save
   end
 
   def update
@@ -53,12 +54,12 @@ helper_method :sort_column, :sort_direction, :current_grade
     current_grade = total_weight = total_score = 0
     course.assessments.each do |assessment|
       if assessment.grade != nil && assessment.weight != nil
-        total_score += (assessment.grade)*(assessment.weight)
+        total_score += (assessment.grade/100)*(assessment.weight)
         total_weight += (assessment.weight)
       end
     end
     current_grade = (total_score/total_weight)*100 if total_weight != 0
-    course.grade = current_grade
+    course.grade = current_grade.round(1)
   end
 
   def course_params
