@@ -3,6 +3,7 @@
     <%= f.input :term, collection: @terms, selected: @terms[0] %>
     <%= f.input :instructor %>
     <%= f.input :credit, collection: 1..10, selected: 3%>
+    <%= f.input :desired_grade, collection: 1..100, selected: 100%>
     <%= f.button :button do %>
       Create Course
     <% end %>

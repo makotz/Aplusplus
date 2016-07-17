@@ -18,11 +18,28 @@
 //= require fullcalendar
 //= require_tree .
 $(document).ready(function(){
+  //Hide all grade related forms
+  $('.update-form-manual-imp').hide()
+  $('.update-form-percentage-imp').hide()
+  $('.update-form-manual').hide()
+  $('.update-form-percentage').hide()
+  $('.desired-grade-form').hide()
 
-  $('.update-form').hide()
-
-  // $('.update-button').click(function() {
-  //   $(this).children().toggle(300);
-  // });
+  //Toggle all grade related forms
+  $(".update-button-percentage").click(function() {
+    $(this).parent().children(".update-form-percentage").toggle()
+  });
+  $(".update-button-manual").click(function() {
+    $(this).parent().children(".update-form-manual").toggle()
+  });
+  $(".update-button-percentage-imp").click(function() {
+    $(this).parent().children(".update-form-percentage-imp").toggle()
+  });
+  $(".update-button-manual-imp").click(function() {
+    $(this).parent().children(".update-form-manual-imp").toggle()
+  });
+  $(".update-desired-grade").click(function() {
+    $(this).parent().children(".desired-grade-form").toggle()
+  });
 
 });

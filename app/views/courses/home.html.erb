@@ -3,45 +3,47 @@
 </div>
 
 <% if user_signed_in? %>
-  <div style="display:inline-block"><%= render "assessments/calendar" %></div>
+  <div style="display:inline-block" class="col-sm-8"><%= render "assessments/calendar" %></div>
 
-  <h2>Priorities</h2>
-  <% if @assessments.exists? %>
-    <table border="1" style="width:100%">
-      <thead>
-        <tr>
-          <td><%= sortable "title", "Assessment"%></td>
-          <td><%= sortable "due_date", "Due Date"%></td>
-          <td><%= sortable "weight", "Weight (%)"%></td>
-        </tr>
-      </thead>
-        <% @assessments.each do |assessment| %>
-        <tbody>
+  <div id="priorities" class="col-sm-4">
+    <h2>Priorities (Due in a week! Aghhhhhh)</h2>
+    <% if @assessments.exists? %>
+      <table border="1" style="width:100%">
+        <thead>
           <tr>
-            <td>
-              <% if assessment.important %>
-                <%= link_to course_path(assessment.course) do %>
-                  <span>
-                    <%= assessment.course.title + " - " + assessment.title %>
-                    <%= fa_icon('star', class: 'important-icon') %>
-                  </span>
+            <td><%= sortable "title", "Assessment"%></td>
+            <td><%= sortable "due_date", "Due Date"%></td>
+            <td><%= sortable "course", "Course"%></td>
+          </tr>
+        </thead>
+          <% @assessments.each do |assessment| %>
+          <tbody>
+            <tr>
+              <td>
+                <% if assessment.important %>
+                  <%= link_to course_path(assessment.course) do %>
+                    <span>
+                      <%= assessment.title %>
+                      <%= fa_icon('star', class: 'important-icon') %>
+                    </span>
+                  <% end %>
+                <% else %>
+                  <%= link_to course_path(assessment.course) do %>
+                    <span>
+                      <%= assessment.title %>
+                      <%= fa_icon('star-o', class: 'important-icon') %>
+                    </span>
+                  <% end %>
                 <% end %>
-              <% else %>
-                <%= link_to course_path(assessment.course) do %>
-                  <span>
-                    <%= assessment.course.title + " - " + assessment.title %>
-                    <%= fa_icon('star-o', class: 'important-icon') %>
-                  </span>
-                <% end %>
-              <% end %>
-            </td>
-            <td><%= assessment.due_date %></td>
-          <td><%= assessment.weight %></td>
-        </tbody>
-        <% end %>
-  <% else %>
-    <p> </p>
-  <% end %>
+              </td>
+              <td><%= assessment.due_date %></td>
+            <td><%= link_to assessment.course.title, course_path(assessment.course) %></td>
+          </tbody>
+          <% end %>
+    <% else %>
+      <p></p>
+    <% end %>
+  </div>
 <% end %>
 
 

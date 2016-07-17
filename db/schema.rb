@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160715020919) do
+ActiveRecord::Schema.define(version: 20160717005730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20160715020919) do
     t.datetime "updated_at",                      null: false
     t.boolean  "important",       default: false
     t.string   "assessment_type"
+    t.float    "igot"
+    t.float    "outof"
   end
 
   add_index "assessments", ["course_id"], name: "index_assessments_on_course_id", using: :btree

@@ -49,17 +49,16 @@ class AssessmentsController < ApplicationController
 
   def update
     @assessment = Assessment.find params[:id]
-    respond_to do |format|
-      if @assessment.update assessment_params
-        @assessment_form = "#edit_assessment_#{@assessment.id}"
-        format.html { redirect_to course_path(params[:course_id]), notice: "Grade updated!" }
-        format.js   { render :update_success }
-      else
-        format.html { redirect_to course_path(params[:course_id]), alert: "Unsuccessful" }
-        format.js   { render :update_failure }
-      end
+    if assessment_params.key?("grade")
+      @assessment.update assessment_params
+      redirect_to course_path(params[:course_id]), notice: "Grade updated!"
+    else
+      @assessment.update assessment_params
+      lazygrade(@assessment)
+      redirect_to course_path(params[:course_id]), notice: "Grade updated manually!"
     end
   end
+
 
   def destroy
     course = Course.find params[:course_id]
@@ -82,11 +81,16 @@ class AssessmentsController < ApplicationController
   private
 
     def assessment_params
-      params.require(:assessment).permit(:title, :description, :due_date, :weight, :grade, :assessment_type)
+      params.require(:assessment).permit(:title, :description, :due_date, :weight, :grade, :assessment_type, :igot, :outof)
     end
 
     def assessment_type
       @assessment_type = ['test', 'quiz', 'exam', 'homework', 'essay']
+    end
+
+    def lazygrade(assessment)
+        assessment.grade = (assessment.igot / assessment.outof)*100
+        assessment.update assessment_params
     end
 
 end

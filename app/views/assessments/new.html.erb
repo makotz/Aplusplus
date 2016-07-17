@@ -3,9 +3,9 @@
 
 <%= simple_form_for @assessment, url: course_assessments_path(@course) do |f|%>
   <%= f.input :title %>
-  <%= f.input :assessment_type, collection: @assessment_type %>
+  <%= f.input :assessment_type, collection: @assessment_type, selected: @assessment_type[0] %>
   <%= f.input :description %>
   <%= f.input :due_date %>
-  <%= f.input :weight, collection: 1..100 %>
-  <%= f.button :submit, class: "btn-primary" %>
+  <%= f.input :weight, collection: 1..100, selected: 20 %>
+  <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>
