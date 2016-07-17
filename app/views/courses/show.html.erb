@@ -7,6 +7,8 @@
   <h2>And you currently have <%= @course.grade %>%.</h2>
 <% end %>
 
+<% if @assessments.present? || @imp_assessments.present? %>
+
   <h3>Assessments:<%= link_to "Add new assessment", new_course_assessment_path(@course) %></h3>
   <table border="1">
     <thead>
