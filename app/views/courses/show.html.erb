@@ -10,7 +10,9 @@
 <% if @assessments.present? || @imp_assessments.present? %>
 
   <h3>Assessments:<%= link_to "Add new assessment", new_course_assessment_path(@course) %></h3>
+
   <table border="1">
+
     <thead>
       <tr>
         <td><%= sortable "title", "Assessment"%></td>
@@ -21,6 +23,7 @@
         <td>Details</td>
       </tr>
     </thead>
+
     <tbody>
     <% if @imp_assessments%>
       <% @imp_assessments.each do |assessment| %>
@@ -85,3 +88,4 @@
     <% end %>
     </tbody>
   </table>
+<% end %>
