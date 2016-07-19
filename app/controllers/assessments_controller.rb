@@ -84,10 +84,6 @@ class AssessmentsController < ApplicationController
       params.require(:assessment).permit(:title, :description, :due_date, :weight, :grade, :assessment_type, :igot, :outof)
     end
 
-    def assessment_type
-      @assessment_type = ['test', 'quiz', 'exam', 'homework', 'essay']
-    end
-
     def lazygrade(assessment)
         assessment.grade = (assessment.igot / assessment.outof)*100
         assessment.update assessment_params

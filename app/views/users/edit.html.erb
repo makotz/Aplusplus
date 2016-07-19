@@ -1,20 +1,13 @@
-<h1> Edit Account Information </h1>
 
 <%= @user.errors.full_messages.join(", ") %>
-<%= form_for @user, url:users_path do |f| %>
-  <div>
-    <%= f.label :first_name, "First name: " %>
-    <%= f.text_field :first_name  %>
-  </div>
-  <div>
-    <%= f.label :last_name, "Last name: "  %>
-    <%= f.text_field :last_name  %>
-  </div>
-  <div>
-    <%= f.label :email, "Email: "  %>
-    <%= f.email_field :email  %>
-  </div>
-  <%= link_to "Password", edit_password_path  %>
-  <br>
-  <%= f.submit %>
+<div class = 'well bs-component'>
+<legend>Edit Account Info <%= link_to "Forgot Password?", edit_password_path  %></legend>
+<%= simple_form_for @user, url:users_path do |f| %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :email %>
+  <%= f.button :submit, class: "btn btn-primary" do %>
+    Save changes
+  <% end %>
 <% end %>
+</div>

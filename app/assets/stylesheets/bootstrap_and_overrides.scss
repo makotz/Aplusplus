@@ -1,3 +1,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'bootstrap/glyphicons';
+
+#bs-example-navbar-collapse-1 > ul > li:nth-child(4) > img {
+  border-radius: 25px;
+};
+
+body > div > div.alert.alert-dismissible.alert-success {
+
+}
