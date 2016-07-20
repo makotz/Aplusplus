@@ -70,8 +70,8 @@
         </td>
         <td>
           <%= assessment.grade if assessment.grade %>%
-          <div class="update-button-percentage btn btn-primary">Update by (%)</div>
-          <div class="update-button-manual btn btn-primary">Update by score</div>
+          <div class="update-button-percentage btn btn-primary">Update(%)</div>
+          <div class="update-button-manual btn btn-primary">Update(/)</div>
           <div class="update-form-percentage">
           <%= form_for(assessment, url: course_assessment_path(@course, assessment), html: {method: "patch"}) do |f| %>
             <%= f.text_field :grade %>

@@ -25,12 +25,17 @@
           </li>
           <li><%= link_to "Add a New Course", new_course_path %></li>
           <li><%= link_to "Calendar", calendar_path %></li>
-          <li><%= link_to current_user.first_name, edit_users_path %><%= image_tag current_user.profile_image %></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          <li><%= image_tag current_user.profile_image %></li>
+          <li><%= link_to current_user.first_name, edit_users_path %></li>
           <li><%= link_to " Sign Out", sessions_path, method: :delete %></li>
         <% else %>
           <li><%= link_to "Sign Up", new_user_path %></li>
           <li><%= link_to "Sign In", new_session_path %></li>
           <li><%= link_to "Sign In With Facebook", sign_in_with_facebook_path %></li>
+
+      </ul>
         <% end %>
 
         <!-- <li class="dropdown">
@@ -50,7 +55,6 @@
       </form>
       <ul class="nav navbar-nav navbar-right"> -->
         <!-- <li><a href="#">Link</a></li> -->
-      </ul>
     </div>
   </div>
 </nav>
