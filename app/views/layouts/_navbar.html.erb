@@ -12,8 +12,8 @@
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
         <% if user_signed_in? %>
+        <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My Courses <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
@@ -30,7 +30,9 @@
           <li><%= image_tag current_user.profile_image %></li>
           <li><%= link_to current_user.first_name, edit_users_path %></li>
           <li><%= link_to " Sign Out", sessions_path, method: :delete %></li>
+      </ul>
         <% else %>
+        <ul class="nav navbar-nav navbar-right">
           <li><%= link_to "Sign Up", new_user_path %></li>
           <li><%= link_to "Sign In", new_session_path %></li>
           <li><%= link_to "Sign In With Facebook", sign_in_with_facebook_path %></li>
