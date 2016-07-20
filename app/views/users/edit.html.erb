@@ -1,3 +1,4 @@
+<div class="col-md-6 col-md-offset-3">
 <h1> Edit Account Information </h1>
 
 <%= @user.errors.full_messages.join(", ") %>
@@ -14,7 +15,8 @@
     <%= f.label :email, "Email: "  %>
     <%= f.email_field :email  %>
   </div>
-  <%= link_to "Password", edit_password_path  %>
+  <%= link_to "Change Password", edit_password_path  %>
   <br>
   <%= f.submit %>
 <% end %>
+</div>
