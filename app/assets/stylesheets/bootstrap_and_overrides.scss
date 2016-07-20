@@ -1,3 +1,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'bootstrap/glyphicons';
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab);
+
+#bs-example-navbar-collapse-1 > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > img {
+  border-radius: 25px;
+}
+
+body {
+font-family: 'Roboto Slab', serif;
+}
