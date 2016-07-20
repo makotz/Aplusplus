@@ -1,3 +1,4 @@
+<div class="col-md-8 col-md-offset-2">
 <h1>Add Assessments</h1>
 <%= link_to "See Course", course_path(@course), :class => "button" %>
 
@@ -9,3 +10,4 @@
   <%= f.input :weight, collection: 1..100, selected: 20 %>
   <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>
+</div>

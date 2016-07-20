@@ -6,6 +6,7 @@
   <div style="display:inline-block" class="col-sm-8"><%= render "assessments/calendar" %></div>
 
   <div id="priorities" class="col-sm-3">
+    <h2>Priorities (Due in a week!)</h2>
     <% if @assessments.exists? %>
         <h2>Priorities (Due in a week! Aghhhhhh)</h2>
           <table border="1" style="width:100%">
@@ -47,20 +48,17 @@
           <% end %>
       <% end %>
   </div>
+  <% else %>
+  <blockquote>
+    <p>Absolute game-changer!</p>
+    <small>Alaina Gully <cite title="Source Title">Quincy College, Illinois</cite></small>
+  </blockquote>
+  <blockquote class="blockquote-reverse">
+    <p>Hands down the best app grade managing app out there. I can't wait to use... wait, I f@#kin hate school. Just kiddin, no tanks.</p>
+    <small>Makoto <cite title="Source Title">Free Soul</cite></small>
+  </blockquote>
+  <blockquote>
+    <p>This shit is nice, I mean calendars and colour?! Definitely a 7/10! One day someone will be using this, bet it.</p>
+    <small>Ryan Woo <cite title="Source Title">Senior Web Developer</cite></small>
+  </blockquote>
 <% end %>
-
-
-
-
-<!-- <blockquote>
-  <p>Absolute game-changer!</p>
-  <small>Alaina Gully <cite title="Source Title">Quincy College, Illinois</cite></small>
-</blockquote>
-<blockquote class="blockquote-reverse">
-  <p>Hands down the best app grade managing app out there. I can't wait to use... wait, I f@#kin hate school. Just kiddin, no tanks.</p>
-  <small>Makoto <cite title="Source Title">Free Soul</cite></small>
-</blockquote>
-<blockquote>
-  <p>This shit is nice, I mean calendars and colour?! Definitely a 7/10! One day someone will be using this, bet it.</p>
-  <small>Ryan Woo <cite title="Source Title">Senior Web Developer</cite></small>
-</blockquote> -->
