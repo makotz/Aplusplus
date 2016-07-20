@@ -1,45 +1,13 @@
 <div class="col-md-8 col-md-offset-2">
 <%= @user.errors.full_messages.join(", ") %>
-<%= form_for(@user, url:users_path) do |f| %>
-  <form class="form-horizontal">
-  <fieldset>
-    <h1>Create an Account</h1>
-    <div class="form-group">
-      <label class="col-lg-2 control-label"><%= f.label :first_name, "First name: " %></label>
-      <div class="col-lg-10">
-        <%= f.text_field(:first_name, class:"form-control", placeholder: "E.g. Peyton") %>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-lg-2 control-label"><%= f.label :last_name, "Last name: " %></label>
-      <div class="col-lg-10">
-        <%= f.text_field(:last_name, class:"form-control", placeholder: "E.g. Manning") %>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-lg-2 control-label"><%= f.label :email, "Email: " %></label>
-      <div class="col-lg-10">
-        <%= f.email_field(:email, class:"form-control", placeholder: "E.g. PFM@gmail.com") %>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-lg-2 control-label"><%= f.label :password, "Password: " %></label>
-      <div class="col-lg-10">
-        <%= f.password_field(:password, class:"form-control") %>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-lg-2 control-label"><%= f.label :password_confirmation, "Confirm password:" %></label>
-      <div class="col-lg-10">
-        <%= f.password_field(:password_confirmation, class: "form-control") %>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
-        <%= f.submit "Create account", class: "btn btn-primary" %>
-      </div>
-    </div>
-  </fieldset>
-  </form>
-<% end %>
+<div class = 'well bs-component'>
+  <legend>Create an Account</legend>
+  <%= simple_form_for(@user, url:users_path) do |f| %>
+    <%= f.input :first_name%>
+    <%= f.input :last_name%>
+    <%= f.input :email%>
+    <%= f.input :password%>
+    <%= f.input :password_confirmation%>
+    <%= f.button :submit, class: "btn btn-primary"%>
+  <% end %>
 </div>
