@@ -1,27 +1,24 @@
 <h1><%= @course.title %></h1>
 <%= link_to "", course_path(@course), class: "glyphicon glyphicon-trash", method: :delete, data: {confirm: "Are you sure?"}%>
 
-<h2>You want a <%= @course.desired_grade %>% in the course.</h2>
+<h3>You want a <%= @course.desired_grade %>% in the course.</h3>
 
 <% if @course.grade != nil %>
-  <h2>And you currently have <%= @course.grade %>%.</h2>
+  <h3>And you currently have <%= @course.grade %>%.</h3>
 <% end %>
-
+<br>
+<div>
 <% if @assessments.present? || @imp_assessments.present? %>
 
-  <h3>Assessments:<%= link_to "Add new assessment", new_course_assessment_path(@course) %></h3>
-
-  <table class="table" border="1">
-  <table class="table" border="1">
-
-    <thead class="thead-inverse">
+  <table class="table">
+    <thead class="thead-default">
       <tr>
-        <td><%= sortable "title", "Assessment"%></td>
-        <td><%= sortable "grade", "Grade (%)"%></td>
-        <td><%= sortable "weight", "Weight (%)"%></td>
-        <td><%= sortable "assessment_type", "Type"%></td>
-        <td><%= sortable "due_date", "Due Date"%></td>
-        <td>Details</td>
+        <th><%= sortable "title", "Assessment"%></th>
+        <th><%= sortable "grade", "Grade (%)"%></th>
+        <th><%= sortable "weight", "Weight (%)"%></th>
+        <th><%= sortable "assessment_type", "Type"%></th>
+        <th><%= sortable "due_date", "Due Date"%></th>
+        <th>Details</th>
       </tr>
     </thead>
 
@@ -90,3 +87,5 @@
     </tbody>
   </table>
 <% end %>
+  <h5><%= link_to "Add new assessment", new_course_assessment_path(@course) %></h5>
+</div>
