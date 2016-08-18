@@ -3,10 +3,47 @@
 @import 'bootstrap/glyphicons';
 @import url(https://fonts.googleapis.com/css?family=Roboto+Slab);
 
-#bs-example-navbar-collapse-1 > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > img {
-  border-radius: 25px;
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: $screen-lg-min) {
+  #bs-example-navbar-collapse-1 > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > img {
+    border-radius: 25px;
+  }
+
+  body {
+  font-family: 'Roboto Slab', serif;
+  background-image: url("wood.png");
+  }
+
+  body > div > div > div{
+      background: #fff;
+      -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.15),-1px 0 0 rgba(0,0,0,0.03),1px 0 0 rgba(0,0,0,0.03),0 1px 0 rgba(0,0,0,0.12);
+      -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.15),-1px 0 0 rgba(0,0,0,0.03),1px 0 0 rgba(0,0,0,0.03),0 1px 0 rgba(0,0,0,0.12);
+      box-shadow: 0 1px 1px rgba(0,0,0,0.15),-1px 0 0 rgba(0,0,0,0.03),1px 0 0 rgba(0,0,0,0.03),0 1px 0 rgba(0,0,0,0.12);
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      padding: 10px;
+      margin: 5px 5px 5px 5px;
+      overflow: hidden;
+      opacity: 1;
+      -webkit-transition: opacity 0.2s ease-in-out,margin-bottom 0.2s ease-in-out,padding 0.2s ease-in-out;
+      -moz-transition: opacity 0.2s ease-in-out,margin-bottom 0.2s ease-in-out,padding 0.2s ease-in-out;
+      -o-transition: opacity 0.2s ease-in-out,margin-bottom 0.2s ease-in-out,padding 0.2s ease-in-out;
+      transition: opacity 0.2s ease-in-out,margin-bottom 0.2s ease-in-out,padding 0.2s ease-in-out;
+  }
+
+  h1 {
+    display: inline-block;
+  }
+
+  body > div > div > form {
+    display: inline-block;
+  }
 }
 
-body {
-font-family: 'Roboto Slab', serif;
-}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: $screen-md-min) {}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) {}

@@ -42,4 +42,6 @@ $(document).ready(function(){
     $(this).parent().children(".desired-grade-form").toggle()
   });
 
+  //Alert dissappers after 3 seconds
+  $("body > div > div.alert.alert-dismissible.alert-success").delay(3000).fadeOut('slow');
 });

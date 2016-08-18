@@ -1,5 +1,7 @@
 <h1><%= @course.title %></h1>
-<%= link_to "", course_path(@course), class: "glyphicon glyphicon-trash", method: :delete, data: {confirm: "Are you sure?"}%>
+<%= button_to course_path(@course), class: "btn btn-primary btn-sm", method: :delete, data: { confirm: "Are you sure?" } do %>
+  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+<% end %>
 
 <h3>You want a <%= @course.desired_grade %>% in the course.</h3>
 
@@ -10,15 +12,20 @@
 <div>
 <% if @assessments.present? || @imp_assessments.present? %>
 
-  <table class="table">
-    <thead class="thead-default">
-      <tr>
-        <th><%= sortable "title", "Assessment"%></th>
-        <th><%= sortable "grade", "Grade (%)"%></th>
-        <th><%= sortable "weight", "Weight (%)"%></th>
-        <th><%= sortable "assessment_type", "Type"%></th>
-        <th><%= sortable "due_date", "Due Date"%></th>
-        <th>Details</th>
+  <h3>Assessments:
+    <%= button_to new_course_assessment_path(@course), class: "btn btn-primary btn-sm", method: :get do %>
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    <% end %></h3>
+  <table class="table table-striped table-hover ">
+    <thead>
+      <tr class="danger">
+        <td><%= sortable "title", "Assessment"%></td>
+        <td><%= sortable "grade", "Grade (%)"%></td>
+        <td><%= sortable "weight", "Weight (%)"%></td>
+        <td><%= sortable "assessment_type", "Type"%></td>
+        <td><%= sortable "due_date", "Due Date"%></td>
+        <td>Details</td>
+
       </tr>
     </thead>
 
@@ -27,7 +34,10 @@
       <% @imp_assessments.each do |assessment| %>
         <tr>
           <td><%= link_to "#{assessment.title}", edit_course_assessment_path(@course, assessment) %>
-            <%= link_to fa_icon("star"), important_course_assessment_path(@course, assessment), method: :patch, class: "important-icon" %><%= link_to "", course_assessment_path(@course, assessment), class: "glyphicon glyphicon-trash", method: :delete, data: {confirm: "Are you sure?"}%>
+            <%= link_to fa_icon("star"), important_course_assessment_path(@course, assessment), method: :patch, class: "important-icon" %>
+            <%= button_to course_assessment_path(@course, assessment), class: "btn btn-primary btn-sm", method: :delete, data: { confirm: "Are you sure?" } do %>
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            <% end %>
           </td>
           <td>
             <%= assessment.grade if assessment.grade %>%
@@ -58,7 +68,10 @@
     <% @assessments.each do |assessment| %>
       <tr>
         <td><%= link_to "#{assessment.title}", edit_course_assessment_path(@course, assessment) %>
-          <%= link_to fa_icon("star-o"), important_course_assessment_path(@course, assessment), method: :patch, class: "important-icon" %><%= link_to "", course_assessment_path(@course, assessment), class: "glyphicon glyphicon-trash", method: :delete, data: {confirm: "Are you sure?"}%>
+          <%= link_to fa_icon("star-o"), important_course_assessment_path(@course, assessment), method: :patch, class: "important-icon" %>
+          <%= button_to course_assessment_path(@course, assessment), class: "btn btn-primary", method: :delete, data: { confirm: "Are you sure?" } do %>
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+          <% end %>
         </td>
         <td>
           <%= assessment.grade if assessment.grade %>%
@@ -83,9 +96,11 @@
         <td><%= assessment.due_date %></td>
         <td><%= assessment.description %></td>
       </tr>
-    <% end %>
+      <% end %>
     </tbody>
   </table>
-<% end %>
-  <h5><%= link_to "Add new assessment", new_course_assessment_path(@course) %></h5>
+
+  <% else %>
+    <%= link_to "Add new assessment", new_course_assessment_path(@course) %>
+  <% end %>
 </div>
