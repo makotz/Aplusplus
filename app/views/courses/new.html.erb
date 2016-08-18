@@ -1,5 +1,4 @@
 <div class="col-md-8 col-md-offset-2">
-
 <%= simple_form_for @course do |f| %>
     <%= f.input :title %>
     <%= f.input :term, collection: @terms, selected: @terms[0] %>

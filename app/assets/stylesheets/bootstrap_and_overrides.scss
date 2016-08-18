@@ -3,10 +3,28 @@
 @import 'bootstrap/glyphicons';
 @import url(https://fonts.googleapis.com/css?family=Roboto+Slab);
 
+$primary : #00AE68;
+$secondary : #FFA900;
+$tertiary : #D2006B;
+$primaryshade : #21825B;
+$secondaryshade : #BF8F30;
+$tertiaryshade : #9D2763;
+
+
 #bs-example-navbar-collapse-1 > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > img {
   border-radius: 25px;
 }
 
 body {
 font-family: 'Roboto Slab', serif;
+  }
+
+.navbar-custom {
+  background-color:$primary;
+  color: white;
+  border-radius:0;
 }
+
+@media only screen and (max-width : 1200px) {
+
+  }
