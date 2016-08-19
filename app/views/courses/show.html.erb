@@ -3,10 +3,8 @@
   <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 <% end %>
 
-<h2>You want a <%= @course.desired_grade %>% in the course.</h2>
-
 <% if @course.grade != nil %>
-  <h2>And you currently have <%= @course.grade %>%.</h2>
+  <h2>You currently have <%= @course.grade %>%.</h2>
 <% end %>
 
 <% if @assessments.present? || @imp_assessments.present? %>
@@ -98,5 +96,6 @@
     </tbody>
   </table>
   <% else %>
+    <h2>Looks like you have no assignments listed...</h2>
     <%= link_to "Add new assessment", new_course_assessment_path(@course) %>
   <% end %>
