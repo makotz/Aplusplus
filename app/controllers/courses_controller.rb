@@ -16,6 +16,7 @@ helper_method :sort_column, :sort_direction, :current_grade
 
   def create
     @course = Course.new course_params
+    @course.color = "red"
     @course.user = @current_user
     current_grade(@course) if @course.assessments.exists?
     if @course.save
@@ -77,7 +78,7 @@ helper_method :sort_column, :sort_direction, :current_grade
   end
 
   def terms
-    @terms = ['Fall 2016', 'Spring 2017']
+    @terms = ['Fall 2016', 'Spring 2017', 'Winter 2016/2017']
   end
 
 end

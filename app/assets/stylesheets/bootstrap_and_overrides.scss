@@ -3,13 +3,11 @@
 @import 'bootstrap/glyphicons';
 @import url(https://fonts.googleapis.com/css?family=Roboto+Slab);
 
-$primary : #218380;
-$primaryopp : #FBB13C;
-$red : #D81159;
-$tertiary : #D2006B;
-$primaryshade : #21825B;
-$secondaryshade : #BF8F30;
-$tertiaryshade : #9D2763;
+$celadongreen : #218380;
+$yelloworange : #FBB13C;
+$debianred : #D81159;
+$darkraspberry : #D2006B;
+$middleblue : #73D2DE;
 
 
 .navbar {
@@ -23,17 +21,21 @@ font-family: 'Roboto Slab', serif;
   }
 
 .navbar-default .navbar-nav > li > a {
-  color: $primaryopp;
+  color: $yelloworange;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: $yelloworange;
 }
 
 .btn-custom {
-  background-color: $red;
+  background-color: $debianred;
 }
 
 @media only screen and (max-width : 2000px) {
 
   .navbar-custom {
-    background-color:$primary;
+    background-color:$celadongreen;
     color: white;
     border-radius:0;
     height: 100px;

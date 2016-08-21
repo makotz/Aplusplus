@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'chart-js-rails'
 gem 'bootstrap-glyphicons'
 gem 'jquery-turbolinks'
 gem 'facebook'

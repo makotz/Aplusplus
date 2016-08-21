@@ -1,4 +1,4 @@
-<h1 style="margin-bottom: 10px display: inline">Your Courses</h1>
+<h1 style="display: inline">My Courses</h1>
 <%= button_to new_course_path, class: "btn btn-primary", method: :get do %>
   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 <% end %>
@@ -6,7 +6,6 @@
   <thead>
     <tr class="danger">
       <th><%= sortable "title", "Course"%></th>
-      <th><%= sortable "desired_grade", "Desired Grade (%)"%></th>
       <th><%= sortable "grade", "Grade (%)"%></th>
       <th><%= sortable "credit", "Credits"%></th>
       <th><%= sortable "term", "Term"%></th>
@@ -16,16 +15,6 @@
     <% @courses.each do |course| %>
       <tr>
         <td><%= link_to course.title, course_path(course) %></td>
-        <td>
-          <%= course.desired_grade if course.desired_grade != nil  %>
-          <div class="update-desired-grade btn btn-primary">Update Desired Grade</div>
-          <div class="desired-grade-form">
-          <%= form_for course, url:course_path(course) do |a| %>
-            <%= a.text_field :desired_grade %>
-            <%= a.submit "Update" %>
-          <% end %>
-          </div>
-        </td>
         <td><%= course.grade %></td>
         <td><%= course.credit %></td>
         <td><%= course.term %></td>

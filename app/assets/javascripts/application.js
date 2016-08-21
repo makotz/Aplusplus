@@ -16,7 +16,9 @@
 //= require turbolinks
 //= require moment
 //= require fullcalendar
+//= require Chart
 //= require_tree .
+
 $(document).ready(function(){
   //Hide all grade related forms
   $('.update-form-manual-imp').hide()

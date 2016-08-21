@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   end
 
   def assessment_type
-    @assessment_type = ['test', 'quiz', 'exam', 'homework', 'essay']
+    @assessment_type = ['Test', 'Quiz', 'Exam', 'Homework', 'Essay']
   end
 
 end

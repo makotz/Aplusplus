@@ -15,20 +15,20 @@
         <% if user_signed_in? %>
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My Courses<span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle hvr-bob" data-toggle="dropdown" role="button" aria-expanded="false">My Courses<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><%= link_to "All Courses", courses_path %></li>
+              <li><%= link_to "All Courses", courses_path, class: "hvr-bob" %></li>
               <% Course.all.each do |course| %>
-              <li><%= link_to course.title, course_path(course) %></li>
+              <li><%= link_to course.title, course_path(course), class: "hvr-bob" %></li>
               <% end %>
             </ul>
           </li>
-          <li><%= link_to "Add a New Course", new_course_path %></li>
+          <li><%= link_to "Add a New Course", new_course_path, class: "hvr-bob" %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
           <li><%= image_tag current_user.profile_image %></li>
-          <li><%= link_to current_user.first_name, edit_users_path %></li>
-          <li><%= link_to " Sign Out", sessions_path, method: :delete %></li>
+          <li><%= link_to current_user.first_name, edit_users_path, class: "hvr-bob" %></li>
+          <li><%= link_to " Sign Out", sessions_path, method: :delete, class: "hvr-bob" %></li>
       </ul>
         <% else %>
         <ul class="nav navbar-nav navbar-right">
