@@ -3,11 +3,29 @@
 @import 'bootstrap/glyphicons';
 @import url(https://fonts.googleapis.com/css?family=Roboto+Slab);
 
-/* Large devices (large desktops, 1200px and up) */
-@media (min-width: $screen-lg-min) {
-  #bs-example-navbar-collapse-1 > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > img {
-    border-radius: 25px;
+$primary : #00AE68;
+$secondary : #FFA900;
+$tertiary : #D2006B;
+$primaryshade : #21825B;
+$secondaryshade : #BF8F30;
+$tertiaryshade : #9D2763;
+
+
+
+body {
+font-family: 'Roboto Slab', serif;
   }
+
+.navbar-custom {
+  background-color:$primary;
+  color: white;
+  border-radius:0;
+}
+
+#bs-example-navbar-collapse-1 > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > img {
+  border-radius: 25px;
+}
+@media only screen and (max-width : 1200px) {
 
   body {
   font-family: 'Roboto Slab', serif;
@@ -41,6 +59,10 @@
   }
 }
 
+
+span.fc-title {
+  white-space: normal;
+}
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: $screen-md-min) {}
