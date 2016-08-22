@@ -1,64 +1,149 @@
 <h1><%= @course.title %></h1>
+<%= button_to course_path(@course), class: "btn btn-primary btn-sm", method: :delete, data: { confirm: "Are you sure?" } do %>
+  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+<% end %>
 
-<%= link_to "Delete", course_path(@course), method: :delete, data: {confirm: "Are you sure?"}%>
-<h2>You want a <%= @course.desired_grade %>% in the course.</h2>
 
-<!-- <h2>And you currently have <%#= @current_grade.round(1) %>%.</h2> -->
-<% if @assessments.exists? %>
-  <h3>Assessments:<%= link_to "Add new assessment", new_course_assessment_path(@course) %></h3>
-  <table border="1" style="width:100%">
+<% if @course.grade != nil %>
+  <h2>You currently have <%= @course.grade %>%.</h2>
+<% end %>
+<canvas id="myChart" width="400" height="100"></canvas>
+
+
+<br>
+<div>
+<% if @assessments.present? || @imp_assessments.present? %>
+
+  <h3>Assessments:
+    <%= button_to new_course_assessment_path(@course), class: "btn btn-primary btn-sm", method: :get do %>
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    <% end %></h3>
+  <table class="table table-striped table-hover ">
     <thead>
-      <tr>
+      <tr class="danger">
         <td><%= sortable "title", "Assessment"%></td>
         <td><%= sortable "grade", "Grade (%)"%></td>
         <td><%= sortable "weight", "Weight (%)"%></td>
         <td><%= sortable "assessment_type", "Type"%></td>
         <td><%= sortable "due_date", "Due Date"%></td>
         <td>Details</td>
-        <td></td>
+
       </tr>
     </thead>
+
     <tbody>
-      <% if @imp_assessments%>
-        <% @imp_assessments.each do |assessment| %>
-          <tr>
-            <td><%= link_to "#{assessment.title}", edit_course_assessment_path(@course, assessment) %>
-              <%= link_to fa_icon("star"), important_path(@course, assessment), method: :patch, class: "important-icon" %>
-            </td>
-            <td>
-              <%= assessment.grade if assessment.grade != nil %>
-              <%= form_for assessment, url: course_assessment_path(@course, assessment) do |a| %>
-                <%= a.text_field :grade %>
-                <%= a.submit "Update" %>
-              <% end %>
-            </td>
+    <% if @imp_assessments%>
+      <% @imp_assessments.each do |assessment| %>
+        <tr>
+          <td><%= link_to "#{assessment.title}", edit_course_assessment_path(@course, assessment) %>
+            <%= link_to fa_icon("star"), important_course_assessment_path(@course, assessment), method: :patch, class: "important-icon" %>
+            <%= button_to course_assessment_path(@course, assessment), class: "btn btn-primary btn-sm", method: :delete, data: { confirm: "Are you sure?" } do %>
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            <% end %>
+          </td>
+          <td>
+            <%= assessment.grade if assessment.grade %>%
+            <div class="update-button-percentage-imp btn btn-primary">Update(%)</div>
+            <div class="update-button-manual-imp btn btn-primary">Update(/)</div>
+            <div class="update-form-percentage-imp">
+            <%= form_for(assessment, url: course_assessment_path(@course, assessment), html: {method: "patch"}) do |f| %>
+              <%= f.text_field :grade %>
+              <%= f.submit "Update" %>
+            <% end %>
+            </div>
+            <div class="update-form-manual-imp">
+            <%= form_for(assessment, url: course_assessment_path(@course, assessment), html: {method: "patch"}) do |f| %>
+              <%= f.text_field :igot %>/
+              <%= f.text_field :outof %>
+              <%= f.submit "Update" %>
+            <% end %>
+            </div>
+          </td>
           <td><%= assessment.weight %></td>
           <td><%= assessment.assessment_type %></td>
           <td><%= assessment.due_date %></td>
           <td><%= assessment.description %></td>
-          <td><%= link_to "DELETE", course_assessment_path(@course, assessment), method: :delete, data: {confirm: "Are you sure?"}%></td>
-        <% end %>
+        </tr>
       <% end %>
+    <% end %>
 
-      <% @assessments.each do |assessment| %>
-        <tr>
-          <td><%= link_to "#{assessment.title}", edit_course_assessment_path(@course, assessment) %>
-              <%= link_to fa_icon("star-o"), important_path(@course, assessment), method: :patch, class: "important-icon" %>
-          </td>
-          <td>
-            <%= assessment.grade if assessment.grade != nil %>
-            <%= form_for assessment, url: course_assessment_path(@course, assessment) do |a| %>
-              <%= a.text_field :grade %>
-              <%= a.submit "Update" %>
-            <% end %>
-          </td>
+    <% @assessments.each do |assessment| %>
+      <tr>
+        <td><%= link_to "#{assessment.title}", edit_course_assessment_path(@course, assessment) %>
+          <%= link_to fa_icon("star-o"), important_course_assessment_path(@course, assessment), method: :patch, class: "important-icon" %>
+          <%= button_to course_assessment_path(@course, assessment), class: "btn btn-primary", method: :delete, data: { confirm: "Are you sure?" } do %>
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+          <% end %>
+        </td>
+        <td>
+          <%= assessment.grade if assessment.grade %>%
+          <div class="update-button-percentage btn btn-primary">Update(%)</div>
+          <div class="update-button-manual btn btn-primary">Update(/)</div>
+          <div class="update-form-percentage">
+          <%= form_for(assessment, url: course_assessment_path(@course, assessment), html: {method: "patch"}) do |f| %>
+            <%= f.text_field :grade %>
+            <%= f.submit "Update" %>
+          <% end %>
+          </div>
+          <div class="update-form-manual">
+          <%= form_for(assessment, url: course_assessment_path(@course, assessment), html: {method: "patch"}) do |f| %>
+            <%= f.text_field :igot %>/
+            <%= f.text_field :outof %>
+            <%= f.submit "Update" %>
+          <% end %>
+          </div>
+        </td>
         <td><%= assessment.weight %></td>
+        <td><%= assessment.assessment_type %></td>
         <td><%= assessment.due_date %></td>
         <td><%= assessment.description %></td>
-        <td><%= link_to "DELETE", course_assessment_path(@course, assessment), method: :delete, data: {confirm: "Are you sure?"}%></td>
+      </tr>
       <% end %>
     </tbody>
   </table>
-<% else %>
-  <%= link_to "Add new assessment", new_course_assessment_path(@course) %>
-<% end %>
+
+  <% else %>
+    <h2>Looks like you have no assignments listed...</h2>
+    <%= link_to "Add new assessment", new_course_assessment_path(@course) %>
+  <% end %>
+
+
+<script>
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: <%= @assessment_graph[1].to_json.html_safe %>,
+        datasets: [{
+            label: 'Assignment Test',
+            data: <%= @assessment_graph[0] %>,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>

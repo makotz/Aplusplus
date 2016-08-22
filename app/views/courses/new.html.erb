@@ -1,9 +1,11 @@
-<%= simple_form_for @course do |f| %>
-    <%= f.input :title %>
-    <%= f.input :term, collection: @terms, selected: @terms[0] %>
-    <%= f.input :instructor %>
-    <%= f.input :credit, collection: 1..10, selected: 3%>
-    <%= f.button :button do %>
-      Create Course
-    <% end %>
+<div class = 'well bs-component'>
+  <legend>Register Course</legend>
+  <%= simple_form_for @course do |f| %>
+      <%= f.input :title, label: "Course Name" %>
+      <%= f.input :term, collection: @terms, selected: @terms[0] %>
+      <%= f.input :credit, label: "Credits", collection: 1..10, selected: 3%>
+      <%= f.button :submit, class: "btn btn-primary" do %>
+        Create Course
+      <% end %>
   <% end %>
+</div>

@@ -1,2 +1,78 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'bootstrap/glyphicons';
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab);
+
+$celadongreen : #218380;
+$yelloworange : #FBB13C;
+$debianred : #D81159;
+$darkraspberry : #D2006B;
+$middleblue : #73D2DE;
+
+
+.navbar {
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;
+}
+
+
+
+body {
+font-family: 'Roboto Slab', serif;
+  }
+
+.navbar-default .navbar-nav > li > a {
+  color: white;
+}
+
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: white;
+}
+
+.btn-custom {
+  background-color: $debianred;
+}
+
+@media only screen and (max-width : 2000px) {
+
+  .navbar-custom {
+    background-color:#2aa9a5;
+    color: white;
+    border-radius:0;
+    height: 80px;
+  }
+
+  .navbar-brand,
+  .navbar-nav li a {
+      line-height: 80px;
+      height: 80px;
+      padding-top: 0;
+      font-size: 17px;
+  }
+
+  #bs-example-navbar-collapse-1 > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > img {
+    margin-top: 13px;
+    border-radius: 25px;
+  }
+
+  h1 {
+    display: inline-block;
+  }
+
+  body > div > div > form {
+    display: inline-block;
+  }
+
+}
+
+
+
+span.fc-title {
+  white-space: normal;
+}
+
+/* Medium devices (desktops, 992px and up) */
+
+@media only screen and (min-width : 992px) {
+
+}

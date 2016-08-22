@@ -1,11 +1,13 @@
+<div class="col-md-8 col-md-offset-2">
 <h1>Add Assessments</h1>
 <%= link_to "See Course", course_path(@course), :class => "button" %>
 
 <%= simple_form_for @assessment, url: course_assessments_path(@course) do |f|%>
-  <%= f.input :title %>
-  <%= f.input :assessment_type, collection: @assessment_type %>
+  <%= f.input :title, label: "Name" %>
+  <%= f.input :assessment_type, label: "Type", collection: @assessment_type, selected: @assessment_type[0] %>
   <%= f.input :description %>
   <%= f.input :due_date %>
-  <%= f.input :weight, collection: 1..100 %>
-  <%= f.button :submit, class: "btn-primary" %>
+  <%= f.input :weight, label: "Weight in course (%)", collection: 1..100, selected: 20 %>
+  <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>
+</div>

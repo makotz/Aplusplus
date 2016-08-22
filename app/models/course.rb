@@ -7,6 +7,7 @@ class Course < ActiveRecord::Base
   validates :credit, presence: true, numericality: { only_integer: true }
   validates :term, presence: true
 
+  # before_create :course_color
 
   def terms
     @terms = ['Fall 2016', 'Spring 2017']
@@ -16,5 +17,13 @@ class Course < ActiveRecord::Base
     @priorities = {}
   end
 
+  private
+
+  # def course_color
+  #   loop do
+  #     self.color = Faker::Color.color_name
+  #     break unless Course.exists?(color: color)
+  #   end
+  # end
 
 end
