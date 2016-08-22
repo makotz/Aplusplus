@@ -27,28 +27,30 @@
 </table>
 </div>
 
-<div class="col-lg-5">
-<canvas id="myChart"></canvas>
-</div>
+<% if @courses.length != 0 %>
+  <div class="col-lg-5">
+  <canvas id="myChart"></canvas>
+  </div>
 
-<script>
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-    type: 'radar',
-    data: {
-    labels: <%= @course_array.to_json.html_safe %>,
-    datasets: [
-        {
-            label: "My Grades",
-            backgroundColor: "rgba(179,181,198,0.2)",
-            borderColor: "rgba(179,181,198,1)",
-            pointBackgroundColor: "rgba(179,181,198,1)",
-            pointBorderColor: "#fff",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "rgba(179,181,198,1)",
-            data: <%= @grade_array %>
-        }
-      ]
-    }
-});
-</script>
+  <script>
+  var ctx = document.getElementById("myChart");
+  var myChart = new Chart(ctx, {
+      type: 'radar',
+      data: {
+      labels: <%= @course_array.to_json.html_safe %>,
+      datasets: [
+          {
+              label: "My Grades",
+              backgroundColor: "rgba(179,181,198,0.2)",
+              borderColor: "rgba(179,181,198,1)",
+              pointBackgroundColor: "rgba(179,181,198,1)",
+              pointBorderColor: "#fff",
+              pointHoverBackgroundColor: "#fff",
+              pointHoverBorderColor: "rgba(179,181,198,1)",
+              data: <%= @grade_array %>
+          }
+        ]
+      }
+  });
+  </script>
+<% end %>
