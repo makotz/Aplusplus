@@ -1,7 +1,7 @@
 class AssessmentsController < ApplicationController
   before_action :authenticate_user!
   before_action :assessment_type, only: [:new, :edit]
-  COLOUR = ["pink","lightblue","lightgreen","grey","orange"]
+  COLOUR = ["pink","lightblue","lightgreen","grey", "#A5D3CA", "#DFB0FF","#FF6961","#ffcc33", "#cccccc", "#AEC6CF", ]
 
   def new
     @course = Course.find params[:course_id]
@@ -24,14 +24,16 @@ class AssessmentsController < ApplicationController
   def index
     @courses = current_user.courses.all
     @assessments = []
+    course_colour = 0
     @courses.each do |course|
       course.assessments.each do |assessment|
         j_assessment = {"title" => assessment.course.title + " - " + assessment.title,
           "start" => assessment.due_date,
           "url" => course_path(course),
-          "color" => course.color}
+          "color" => COLOUR[course_colour]}
         @assessments << j_assessment
       end
+      course_colour += 1
     end
     @assessments.flatten!
     render json: @assessments
