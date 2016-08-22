@@ -13,7 +13,6 @@ class AssessmentsController < ApplicationController
     @assessment = Assessment.new assessment_params
     @assessment.course_id = params[:course_id]
     if @assessment.save
-      NotiMailer.notify_user(@assessment).deliver_now
       redirect_to course_path(params[:course_id]), notice: "Assessment added!"
     else
       @course = @assessment.course
