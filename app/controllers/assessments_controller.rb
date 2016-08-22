@@ -24,16 +24,14 @@ class AssessmentsController < ApplicationController
   def index
     @courses = current_user.courses.all
     @assessments = []
-    col = 0
     @courses.each do |course|
       course.assessments.each do |assessment|
         j_assessment = {"title" => assessment.course.title + " - " + assessment.title,
           "start" => assessment.due_date,
           "url" => course_path(course),
-          "color" => COLOUR[col]}
+          "color" => course.color}
         @assessments << j_assessment
       end
-      col += 1
     end
     @assessments.flatten!
     render json: @assessments

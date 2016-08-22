@@ -3,12 +3,16 @@
 @import 'bootstrap/glyphicons';
 @import url(https://fonts.googleapis.com/css?family=Roboto+Slab);
 
-$primary : #00AE68;
-$secondary : #FFA900;
-$tertiary : #D2006B;
-$primaryshade : #21825B;
-$secondaryshade : #BF8F30;
-$tertiaryshade : #9D2763;
+$celadongreen : #218380;
+$yelloworange : #FBB13C;
+$debianred : #D81159;
+$darkraspberry : #D2006B;
+$middleblue : #73D2DE;
+
+
+.navbar {
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;
+}
 
 
 
@@ -16,20 +20,38 @@ body {
 font-family: 'Roboto Slab', serif;
   }
 
-.navbar-custom {
-  background-color:$primary;
-  color: white;
-  border-radius:0;
+.navbar-default .navbar-nav > li > a {
+  color: $yelloworange;
 }
 
-#bs-example-navbar-collapse-1 > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > img {
-  border-radius: 25px;
-}
-@media only screen and (max-width : 1200px) {
 
-  body {
-  font-family: 'Roboto Slab', serif;
-  background-image: url("wood.png");
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: $yelloworange;
+}
+
+.btn-custom {
+  background-color: $debianred;
+}
+
+@media only screen and (max-width : 2000px) {
+
+  .navbar-custom {
+    background-color:$celadongreen;
+    color: white;
+    border-radius:0;
+    height: 100px;
+  }
+
+  .navbar-brand,
+  .navbar-nav li a {
+      line-height: 80px;
+      height: 80px;
+      padding-top: 0;
+      font-size: 17px;
+  }
+
+  #bs-example-navbar-collapse-1 > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > img {
+    border-radius: 25px;
   }
 
   body > div > div > div{
@@ -57,7 +79,9 @@ font-family: 'Roboto Slab', serif;
   body > div > div > form {
     display: inline-block;
   }
+
 }
+
 
 
 span.fc-title {
@@ -65,7 +89,7 @@ span.fc-title {
 }
 
 /* Medium devices (desktops, 992px and up) */
-@media (min-width: $screen-md-min) {}
 
-/* Small devices (tablets, 768px and up) */
-@media (min-width: $screen-sm-min) {}
+@media only screen and (min-width : 992px) {
+
+}
