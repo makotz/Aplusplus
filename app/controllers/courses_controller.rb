@@ -7,6 +7,8 @@ helper_method :sort_column, :sort_direction, :current_grade
     @assessments = Assessment.where(:due_date => Time.now-1.days..Time.now+7.days).order(:due_date).order(weight: :desc)
     assessment_type
     @assessment = Assessment.new
+    find_grade
+    find_course
   end
 
   def new
@@ -79,6 +81,22 @@ helper_method :sort_column, :sort_direction, :current_grade
 
   def terms
     @terms = ['Fall 2016', 'Spring 2017', 'Winter 2016/2017']
+  end
+
+  def find_grade
+    @grade_array = []
+    Course.all.each do |course|
+      @grade_array << course.grade
+    end
+    @grade_array
+  end
+
+  def find_course
+    @course_array = []
+    Course.all.each do |course|
+      @course_array << "#{course.title.to_s}"
+    end
+    @course_array
   end
 
 end
