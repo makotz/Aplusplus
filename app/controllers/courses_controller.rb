@@ -7,8 +7,6 @@ helper_method :sort_column, :sort_direction, :current_grade
     @assessments = Assessment.where(:due_date => Time.now-1.days..Time.now+7.days).order(:due_date).order(weight: :desc)
     assessment_type
     @assessment = Assessment.new
-    find_grade
-    find_course
   end
 
   def new
@@ -30,6 +28,8 @@ helper_method :sort_column, :sort_direction, :current_grade
 
   def index
     @courses = @current_user.courses.order(sort_column + " " + sort_direction)
+    find_grade
+    find_course
   end
 
   def show

@@ -3,7 +3,6 @@
 </div>
 
 <% if user_signed_in? %>
-<canvas id="myChart" width="400" height="400"></canvas>
   <div style="display:inline-block" class="col-sm-8"><%= render "assessments/calendar" %></div>
   <div id="priorities" class="col-sm-3">
     <h2>Priorities (Due in a week!)</h2>
@@ -48,7 +47,6 @@
           <% end %>
       <% end %>
   </div>
-  <canvas id="myChart" width="400" height="400"></canvas>
   <% else %>
   <blockquote>
     <p>Absolute game-changer!</p>
@@ -63,25 +61,3 @@
     <small>Ryan Woo <cite title="Source Title">Senior Web Developer</cite></small>
   </blockquote>
 <% end %>
-
-<script>
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-    type: 'radar',
-    data: {
-    labels: <%= @course_array.to_json.html_safe %>,
-    datasets: [
-        {
-            label: "My Grades",
-            backgroundColor: "rgba(179,181,198,0.2)",
-            borderColor: "rgba(179,181,198,1)",
-            pointBackgroundColor: "rgba(179,181,198,1)",
-            pointBorderColor: "#fff",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "rgba(179,181,198,1)",
-            data: <%= @grade_array %>
-        }
-      ]
-    }
-});
-</script>
