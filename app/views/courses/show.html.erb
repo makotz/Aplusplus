@@ -3,11 +3,15 @@
   <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 <% end %>
 
+
 <% if @course.grade != nil %>
   <h2>You currently have <%= @course.grade %>%.</h2>
 <% end %>
 <canvas id="myChart" width="400" height="100"></canvas>
 
+
+<br>
+<div>
 <% if @assessments.present? || @imp_assessments.present? %>
 
   <h3>Assessments:
@@ -23,6 +27,7 @@
         <td><%= sortable "assessment_type", "Type"%></td>
         <td><%= sortable "due_date", "Due Date"%></td>
         <td>Details</td>
+
       </tr>
     </thead>
 
@@ -96,10 +101,12 @@
       <% end %>
     </tbody>
   </table>
+
   <% else %>
     <h2>Looks like you have no assignments listed...</h2>
     <%= link_to "Add new assessment", new_course_assessment_path(@course) %>
   <% end %>
+
 
 <script>
 var ctx = document.getElementById("myChart");

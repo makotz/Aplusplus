@@ -21,11 +21,12 @@ font-family: 'Roboto Slab', serif;
   }
 
 .navbar-default .navbar-nav > li > a {
-  color: $yelloworange;
+  color: white;
 }
 
+
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-  color: $yelloworange;
+  color: white;
 }
 
 .btn-custom {
@@ -35,10 +36,10 @@ font-family: 'Roboto Slab', serif;
 @media only screen and (max-width : 2000px) {
 
   .navbar-custom {
-    background-color:$celadongreen;
+    background-color:#2aa9a5;
     color: white;
     border-radius:0;
-    height: 100px;
+    height: 80px;
   }
 
   .navbar-brand,
@@ -50,14 +51,12 @@ font-family: 'Roboto Slab', serif;
   }
 
   #bs-example-navbar-collapse-1 > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > img {
+    margin-top: 13px;
     border-radius: 25px;
   }
 
   body > div > div > div{
       background: #fff;
-      -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.15),-1px 0 0 rgba(0,0,0,0.03),1px 0 0 rgba(0,0,0,0.03),0 1px 0 rgba(0,0,0,0.12);
-      -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.15),-1px 0 0 rgba(0,0,0,0.03),1px 0 0 rgba(0,0,0,0.03),0 1px 0 rgba(0,0,0,0.12);
-      box-shadow: 0 1px 1px rgba(0,0,0,0.15),-1px 0 0 rgba(0,0,0,0.03),1px 0 0 rgba(0,0,0,0.03),0 1px 0 rgba(0,0,0,0.12);
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box;
@@ -81,6 +80,13 @@ font-family: 'Roboto Slab', serif;
 
 }
 
+
+
+span.fc-title {
+  white-space: normal;
+}
+
+/* Medium devices (desktops, 992px and up) */
 
 @media only screen and (min-width : 992px) {
 
