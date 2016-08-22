@@ -38,6 +38,7 @@ helper_method :sort_column, :sort_direction, :current_grade
     @assessments = @course.assessments.where(important: false).order(sort_column + " " + sort_direction)
     current_grade(@course) if @course.assessments.exists?
     @course.save
+    assessment_grade(@course)
   end
 
   def update
@@ -97,6 +98,16 @@ helper_method :sort_column, :sort_direction, :current_grade
       @course_array << "#{course.title.to_s}"
     end
     @course_array
+  end
+
+  def assessment_grade(course)
+    assessment_grade_array = []
+    assessment_name_array = []
+    course.assessments.each do |assessment|
+      assessment_grade_array << assessment.grade
+      assessment_name_array << assessment.title
+    end
+    @assessment_graph = [assessment_grade_array, assessment_name_array]
   end
 
 end
