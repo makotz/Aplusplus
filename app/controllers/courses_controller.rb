@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-before_action :authenticate_user!, except: [:home]
+before_action :authenticate_user!
 before_action :current_user, only: [:create, :index]
 helper_method :sort_column, :sort_direction, :current_grade
 
