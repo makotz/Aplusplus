@@ -12,6 +12,7 @@ class AssessmentsController < ApplicationController
   def create
     @assessment = Assessment.new assessment_params
     @assessment.course_id = params[:course_id]
+    @assessment.user = current_user
     if @assessment.save
       redirect_to course_path(params[:course_id]), notice: "Assessment added!"
     else

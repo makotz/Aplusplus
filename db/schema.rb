@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160822215708) do
+ActiveRecord::Schema.define(version: 20160831235729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,19 +29,20 @@ ActiveRecord::Schema.define(version: 20160822215708) do
     t.string   "assessment_type"
     t.float    "igot"
     t.float    "outof"
+    t.integer  "user_id"
   end
 
   add_index "assessments", ["course_id"], name: "index_assessments_on_course_id", using: :btree
+  add_index "assessments", ["user_id"], name: "index_assessments_on_user_id", using: :btree
 
   create_table "courses", force: :cascade do |t|
     t.string   "title"
     t.integer  "credit"
     t.string   "instructor"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "user_id"
-    t.float    "grade",         default: 50.0
-    t.float    "desired_grade"
+    t.float    "grade",      default: 50.0
     t.string   "term"
     t.string   "color"
   end
@@ -67,5 +68,6 @@ ActiveRecord::Schema.define(version: 20160822215708) do
   add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", using: :btree
 
   add_foreign_key "assessments", "courses"
+  add_foreign_key "assessments", "users"
   add_foreign_key "courses", "users"
 end

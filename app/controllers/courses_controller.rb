@@ -4,7 +4,7 @@ before_action :current_user, only: [:create, :index]
 helper_method :sort_column, :sort_direction, :current_grade
 
   def home
-    @assessments = Assessment.where(:due_date => Time.now-1.days..Time.now+7.days).order(:due_date).order(weight: :desc)
+    @assessments = current_user.assessments.where(:due_date => Time.now-1.days..Time.now+7.days).order(:due_date).order(weight: :desc)
     assessment_type
     @assessment = Assessment.new
   end
